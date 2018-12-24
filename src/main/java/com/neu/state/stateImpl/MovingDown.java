@@ -9,18 +9,17 @@ public class MovingDown implements State {
         this.elevatorController = elevatorController;
     }
 
-    @Override
-    public void goUp() {
-
-    }
 
     @Override
-    public void goDown() {
-        int floorNum = elevatorController.getCurrentFloorNum();
-        while (floorNum > elevatorController.getAimFloorNum()){
-            floorNum--;
-            elevatorController.setCurrentFloorNum(floorNum);
+    public void moving() {
+        int listSize = elevatorController.getDownList().size();
+        int aimFloorNum = elevatorController.getUpList().get(listSize);
+        int tempFloorNum = elevatorController.getCurrentFloorNum();
+        while(tempFloorNum != aimFloorNum){
+            tempFloorNum--;
+            elevatorController.setCurrentFloorNum(tempFloorNum);
         }
+        elevatorController.getUpList().remove(listSize);
         elevatorController.setCurrentState(elevatorController.getStop());
     }
 

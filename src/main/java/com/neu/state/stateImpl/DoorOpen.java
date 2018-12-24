@@ -9,14 +9,9 @@ public class DoorOpen implements State {
         this.elevatorController = elevatorController;
     }
 
-    @Override
-    public void goUp() {
-        System.out.println("the door is open. It can't run!!!");
-    }
 
     @Override
-    public void goDown() {
-        System.out.println("the door is open. It can't run!!!");
+    public void moving() {
 
     }
 
@@ -27,6 +22,11 @@ public class DoorOpen implements State {
 
     @Override
     public void closeDoor() {
-        elevatorController.setCurrentState(elevatorController.getDoorClose());
+        if(true){
+            elevatorController.setCurrentState(elevatorController.getDoorBlocked());
+        }
+        else {
+            elevatorController.setCurrentState(elevatorController.getDoorClose());
+        }
     }
 }

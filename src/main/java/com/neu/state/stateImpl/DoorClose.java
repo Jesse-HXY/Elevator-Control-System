@@ -10,24 +10,27 @@ public class DoorClose implements State {
     }
 
     @Override
-    public void goUp() {
-        if(elevatorController.getCurrentFloorNum() <= 6) {
-            elevatorController.setCurrentState(elevatorController.getMovingUp());
-        }
-        else{
-            System.out.println("can't go up!!!");
-        }
-    }
-
-    @Override
-    public void goDown() {
-        if(elevatorController.getCurrentFloorNum() >= 0){
-            elevatorController.setCurrentState(elevatorController.getMovingDown());
+    public void moving() {
+        if(elevatorController.getDownList().size() == 0 && elevatorController.getDownList().size() == 0){
+            elevatorController.setCurrentState(elevatorController.getIdle());
         }
         else {
-            System.out.println("can't go down");
+            if (elevatorController.isUp()) {
+                if (elevatorController.getUpList().size() == 0) {
+                    elevatorController.setCurrentState(elevatorController.getMovingDown());
+                    elevatorController.setUp(false);
+                } else {
+                    elevatorController.setCurrentState(elevatorController.getMovingUp());
+                }
+            } else {
+                if (elevatorController.getDownList().size() == 0) {
+                    elevatorController.setCurrentState(elevatorController.getMovingUp());
+                    elevatorController.setUp(true);
+                } else {
+                    elevatorController.setCurrentState(elevatorController.getMovingDown());
+                }
+            }
         }
-
     }
 
     @Override

@@ -9,13 +9,9 @@ public class DoorBlocked implements State {
         this.elevatorController = elevatorController;
     }
 
-    @Override
-    public void goUp() {
-
-    }
 
     @Override
-    public void goDown() {
+    public void moving() {
 
     }
 

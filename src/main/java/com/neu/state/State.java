@@ -1,8 +1,7 @@
 package com.neu.state;
 
 public interface State {
-    public void goUp();
-    public void goDown();
+    public void moving();
     public void openDoor();
     public void closeDoor();
 }

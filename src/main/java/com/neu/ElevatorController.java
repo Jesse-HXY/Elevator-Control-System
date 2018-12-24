@@ -5,6 +5,11 @@ import com.neu.motor.ElevatorMotor;
 import com.neu.state.State;
 import com.neu.state.stateImpl.*;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+
 public class ElevatorController {
     private State doorBlocked;
     private State doorClose;
@@ -16,11 +21,17 @@ public class ElevatorController {
     private State currentState;
     private int currentFloorNum;
     private boolean isReached;
+    private List<Integer> upList;
+    private List<Integer> downList;
     private int aimFloorNum;
+    private boolean isUp;
     public ElevatorController(){
         currentFloorNum = 1;
         aimFloorNum = 1;
         isReached = false;
+        isUp = true;
+        upList = new ArrayList<>();
+        downList = new ArrayList<>();
         doorBlocked = new DoorBlocked(this);
         doorClose = new DoorClose(this);
         doorOpen = new DoorOpen(this);
@@ -111,16 +122,46 @@ public class ElevatorController {
         isReached = reached;
     }
 
-    public void floorButtonPressed(int floorNum){
-        aimFloorNum = floorNum;
-    }
-
     public int getAimFloorNum() {
         return aimFloorNum;
     }
 
     public void setAimFloorNum(int aimFloorNum) {
         this.aimFloorNum = aimFloorNum;
+    }
+
+    public List<Integer> getUpList() {
+        return upList;
+    }
+
+    public void setUpList(List<Integer> upList) {
+        this.upList = upList;
+    }
+
+    public List<Integer> getDownList() {
+        return downList;
+    }
+
+    public void setDownList(List<Integer> downList) {
+        this.downList = downList;
+    }
+
+    public void floorButtonPressed(int floorNum){
+        if(floorNum > currentFloorNum){
+            upList.add(floorNum);
+            Collections.sort(upList);
+        }else{
+            downList.add(floorNum);
+            Collections.sort(downList);
+        }
+    }
+
+    public boolean isUp() {
+        return isUp;
+    }
+
+    public void setUp(boolean up) {
+        isUp = up;
     }
 
     public void openButtonPressed(){

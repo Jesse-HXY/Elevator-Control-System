@@ -10,12 +10,7 @@ public class Stop implements State {
     }
 
     @Override
-    public void goUp() {
-
-    }
-
-    @Override
-    public void goDown() {
+    public void moving() {
 
     }
 
@@ -26,6 +21,6 @@ public class Stop implements State {
 
     @Override
     public void closeDoor() {
-        elevatorController.setCurrentState(elevatorController.getDoorClose());
+
     }
 }
