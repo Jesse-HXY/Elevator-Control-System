@@ -1,5 +1,7 @@
 package com.neu;
 
+import com.neu.motor.DoorMotor;
+import com.neu.motor.ElevatorMotor;
 import com.neu.state.State;
 import com.neu.state.stateImpl.*;
 
@@ -12,7 +14,6 @@ public class ElevatorController {
     private State movingUp;
     private State stop;
     private State currentState;
-
     private int currentFloorNum;
     private boolean isReached;
     private int aimFloorNum;
