@@ -3,7 +3,7 @@ package com.neu;
 import com.neu.state.State;
 
 public class ElevatorController {
-    private State state;
+    private State currentState;
     private int currentFloorNum;
     private boolean isReached;
 
