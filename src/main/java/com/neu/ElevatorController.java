@@ -1,7 +1,5 @@
 package com.neu;
 
-import com.neu.motor.DoorMotor;
-import com.neu.motor.ElevatorMotor;
 import com.neu.state.State;
 import com.neu.state.stateImpl.*;
 

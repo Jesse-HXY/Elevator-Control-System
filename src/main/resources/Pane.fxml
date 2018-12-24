@@ -38,14 +38,14 @@
                                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                             </rowConstraints>
                                             <children>
-                                                <Button fx:id="oneButton" mnemonicParsing="false" prefHeight="112.0" prefWidth="98.0" text="1" />
-                                                <Button fx:id="fiveButton" mnemonicParsing="false" prefHeight="113.0" prefWidth="142.0" text="5" GridPane.rowIndex="2" />
-                                                <Button fx:id="threeButton" mnemonicParsing="false" prefHeight="134.0" prefWidth="98.0" text="3" GridPane.rowIndex="1" />
-                                                <Button fx:id="sixButton" mnemonicParsing="false" prefHeight="118.0" prefWidth="98.0" text="6" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                                <Button fx:id="twoButton" mnemonicParsing="false" prefHeight="106.0" prefWidth="94.0" text="2" GridPane.columnIndex="1" />
-                                                <Button fx:id="fourButton" mnemonicParsing="false" prefHeight="127.0" prefWidth="94.0" text="4" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                                <Button fx:id="openButton" mnemonicParsing="false" prefHeight="135.0" prefWidth="98.0" text="open" GridPane.rowIndex="3" />
-                                                <Button fx:id="closeButton" mnemonicParsing="false" prefHeight="122.0" prefWidth="98.0" text="close" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                                <Button fx:id="oneButton" mnemonicParsing="false" onAction="#oneButtonAction" prefHeight="112.0" prefWidth="98.0" text="1" GridPane.rowIndex="2" />
+                                                <Button fx:id="fiveButton" mnemonicParsing="false" onAction="#fiveButtonAction" prefHeight="113.0" prefWidth="142.0" text="5" />
+                                                <Button fx:id="threeButton" mnemonicParsing="false" onAction="#threeButtonAction" prefHeight="134.0" prefWidth="98.0" text="3" GridPane.rowIndex="1" />
+                                                <Button fx:id="sixButton" mnemonicParsing="false" onAction="#sixButtonAction" prefHeight="118.0" prefWidth="98.0" text="6" GridPane.columnIndex="1" />
+                                                <Button fx:id="twoButton" mnemonicParsing="false" onAction="#twoButtonAction" prefHeight="106.0" prefWidth="94.0" text="2" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                                <Button fx:id="fourButton" mnemonicParsing="false" onAction="#fourButtonAction" prefHeight="127.0" prefWidth="94.0" text="4" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                <Button fx:id="openButton" mnemonicParsing="false" onAction="#openButtonAction" prefHeight="135.0" prefWidth="98.0" text="open" GridPane.rowIndex="3" />
+                                                <Button fx:id="closeButton" mnemonicParsing="false" onAction="#closeButtonAction" prefHeight="122.0" prefWidth="98.0" text="close" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                                             </children>
                                         </GridPane>
                                         <GridPane GridPane.rowIndex="1">
@@ -58,7 +58,7 @@
                                             </rowConstraints>
                                             <children>
                                                 <Label prefHeight="18.0" prefWidth="76.0" text="*notice:" />
-                                                <Label prefHeight="18.0" prefWidth="102.0" textFill="RED" GridPane.columnIndex="1" />
+                                                <Label fx:id="notice" prefHeight="18.0" prefWidth="102.0" textFill="RED" GridPane.columnIndex="1" />
                                             </children>
                                         </GridPane>
                                     </children>
@@ -101,27 +101,28 @@
                                 <Label text="Floor 5" GridPane.rowIndex="2" />
                                 <Label text="Gap" GridPane.rowIndex="1" />
                                 <Label text="Floor 6" />
-                                <Label textFill="RED" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                <Label textFill="RED" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                <Label textFill="RED" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                                <Label textFill="RED" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                                <Label textFill="RED" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                                <Label textFill="RED" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                                <Label textFill="RED" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-                                <Label textFill="RED" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-                                <Label textFill="RED" GridPane.columnIndex="1" GridPane.rowIndex="9" />
-                                <Label text="*****" textFill="RED" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+                                <Label fx:id="fiveGap" textFill="RED" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                <Label fx:id="fiveFloor" textFill="RED" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                <Label fx:id="fourGap" textFill="RED" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                <Label fx:id="fourFloor" textFill="RED" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                <Label fx:id="threeGap" textFill="RED" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                <Label fx:id="threeFloor" textFill="RED" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                                <Label fx:id="twoGap" textFill="RED" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                                <Label fx:id="twoFloor" textFill="RED" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                                <Label fx:id="oneGap" textFill="RED" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+                                <Label fx:id="oneFloor" text="*****" textFill="RED" GridPane.columnIndex="1" GridPane.rowIndex="10" />
                                 <Label text="Door state:" GridPane.columnIndex="2" GridPane.rowIndex="2" />
                                 <Label text="Door state:" GridPane.columnIndex="2" />
                                 <Label text="Door state:" GridPane.columnIndex="2" GridPane.rowIndex="4" />
                                 <Label text="Door state:" GridPane.columnIndex="2" GridPane.rowIndex="6" />
                                 <Label text="Door state:" GridPane.columnIndex="2" GridPane.rowIndex="8" />
                                 <Label text="Door state:" GridPane.columnIndex="2" GridPane.rowIndex="10" />
-                                <Label textFill="RED" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-                                <Label textFill="RED" GridPane.columnIndex="3" GridPane.rowIndex="4" />
-                                <Label textFill="RED" GridPane.columnIndex="3" GridPane.rowIndex="6" />
-                                <Label textFill="RED" GridPane.columnIndex="3" GridPane.rowIndex="8" />
-                                <Label text="Close" textFill="RED" GridPane.columnIndex="3" GridPane.rowIndex="10" />
+                                <Label fx:id="fiveDoor" textFill="RED" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                                <Label fx:id="fourDoor" textFill="RED" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+                                <Label fx:id="threeDoor" textFill="RED" GridPane.columnIndex="3" GridPane.rowIndex="6" />
+                                <Label fx:id="twoDoor" textFill="RED" GridPane.columnIndex="3" GridPane.rowIndex="8" />
+                                <Label fx:id="oneDoor" text="Close" textFill="RED" GridPane.columnIndex="3" GridPane.rowIndex="10" />
+                                <Label fx:id="sixDoor" textFill="RED" GridPane.columnIndex="3" />
                             </children>
                         </GridPane>
                     </children>
