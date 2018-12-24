@@ -8,4 +8,29 @@ public class MovingDown implements State {
     public MovingDown(ElevatorController elevatorController){
         this.elevatorController = elevatorController;
     }
+
+    @Override
+    public void goUp() {
+
+    }
+
+    @Override
+    public void goDown() {
+        int floorNum = elevatorController.getCurrentFloorNum();
+        while (floorNum > elevatorController.getAimFloorNum()){
+            floorNum--;
+            elevatorController.setCurrentFloorNum(floorNum);
+        }
+        elevatorController.setCurrentState(elevatorController.getStop());
+    }
+
+    @Override
+    public void openDoor() {
+
+    }
+
+    @Override
+    public void closeDoor() {
+
+    }
 }

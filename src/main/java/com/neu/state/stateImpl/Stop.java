@@ -8,4 +8,24 @@ public class Stop implements State {
     public Stop(ElevatorController elevatorController){
         this.elevatorController = elevatorController;
     }
+
+    @Override
+    public void goUp() {
+
+    }
+
+    @Override
+    public void goDown() {
+
+    }
+
+    @Override
+    public void openDoor() {
+        elevatorController.setCurrentState(elevatorController.getDoorOpen());
+    }
+
+    @Override
+    public void closeDoor() {
+        elevatorController.setCurrentState(elevatorController.getDoorClose());
+    }
 }

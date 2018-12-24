@@ -8,4 +8,25 @@ public class DoorOpen implements State {
     public DoorOpen(ElevatorController elevatorController){
         this.elevatorController = elevatorController;
     }
+
+    @Override
+    public void goUp() {
+        System.out.println("the door is open. It can't run!!!");
+    }
+
+    @Override
+    public void goDown() {
+        System.out.println("the door is open. It can't run!!!");
+
+    }
+
+    @Override
+    public void openDoor() {
+
+    }
+
+    @Override
+    public void closeDoor() {
+        elevatorController.setCurrentState(elevatorController.getDoorClose());
+    }
 }
