@@ -1,4 +1,11 @@
 package com.neu.state.stateImpl;
 
-public class DoorBlocked {
+import com.neu.ElevatorController;
+import com.neu.state.State;
+
+public class DoorBlocked implements State {
+    private ElevatorController elevatorController;
+    public DoorBlocked(ElevatorController elevatorController){
+        this.elevatorController = elevatorController;
+    }
 }
