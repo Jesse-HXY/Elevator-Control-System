@@ -1,12 +1,17 @@
 package com.neu.fxController;
 
 
+import com.neu.listener.ElevatorController;
+import com.neu.sensor.DoorSensor;
+import com.neu.sensor.ElevatorPanel;
+import com.neu.sensor.FloorSensor;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
-public class FxController  {
+
+public class FxController {
     @FXML
     private Button openButton;
     @FXML
@@ -60,43 +65,56 @@ public class FxController  {
     @FXML
     private Label sixDoor;
 
+    private  DoorSensor doorSensor = new DoorSensor();
+    private  ElevatorPanel elevatorPanel = new ElevatorPanel();
+    private  FloorSensor floorSensor = new FloorSensor();
+
+
     @FXML
     public void openButtonAction(ActionEvent event) {
-
+        elevatorPanel.getListeners().get(0).openButtonPressed();
     }
+
     @FXML
     public void closeButtonAction(ActionEvent event) {
-
+        elevatorPanel.getListeners().get(0).closedButtonPressed();
     }
+
     @FXML
     public void oneButtonAction(ActionEvent event) {
-
+        oneButton.setStyle("-fx-background-color: red");
+        elevatorPanel.getListeners().get(0).floorButtonPressed(1);
     }
+
     @FXML
     public void twoButtonAction(ActionEvent event) {
-
+        twoButton.setStyle("-fx-background-color: red");
+        elevatorPanel.getListeners().get(0).floorButtonPressed(2);
     }
+
     @FXML
     public void threeButtonAction(ActionEvent event) {
-
+        threeButton.setStyle("-fx-background-color: red");
+        elevatorPanel.getListeners().get(0).floorButtonPressed(3);
     }
+
     @FXML
     public void fourButtonAction(ActionEvent event) {
-
+        fourButton.setStyle("-fx-background-color: red");
+        elevatorPanel.getListeners().get(0).floorButtonPressed(4);
     }
+
     @FXML
     public void fiveButtonAction(ActionEvent event) {
-
+        fiveButton.setStyle("-fx-background-color: red");
+        elevatorPanel.getListeners().get(0).floorButtonPressed(5);
     }
+
     @FXML
     public void sixButtonAction(ActionEvent event) {
-
+        sixButton.setStyle("-fx-background-color: red");
+        elevatorPanel.getListeners().get(0).floorButtonPressed(6);
     }
-
-
-
-
-
 
 
 }

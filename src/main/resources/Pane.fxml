@@ -101,6 +101,7 @@
                                 <Label text="Floor 5" GridPane.rowIndex="2" />
                                 <Label text="Gap" GridPane.rowIndex="1" />
                                 <Label text="Floor 6" />
+                                <Label fx:id="sixFloor" textFill="RED" GridPane.columnIndex="1" />
                                 <Label fx:id="fiveGap" textFill="RED" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                 <Label fx:id="fiveFloor" textFill="RED" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                 <Label fx:id="fourGap" textFill="RED" GridPane.columnIndex="1" GridPane.rowIndex="3" />

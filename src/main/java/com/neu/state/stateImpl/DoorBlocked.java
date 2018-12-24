@@ -1,6 +1,6 @@
 package com.neu.state.stateImpl;
 
-import com.neu.ElevatorController;
+import com.neu.listener.ElevatorController;
 import com.neu.state.State;
 
 public class DoorBlocked implements State {
