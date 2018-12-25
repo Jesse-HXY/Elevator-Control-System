@@ -23,4 +23,9 @@ public class Stop implements State {
     public void closeDoor() {
 
     }
+
+    @Override
+    public void printCurrentState() {
+        System.out.println("Stop");
+    }
 }

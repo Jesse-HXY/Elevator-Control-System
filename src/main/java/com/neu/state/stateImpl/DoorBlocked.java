@@ -24,4 +24,9 @@ public class DoorBlocked implements State {
     public void closeDoor() {
 
     }
+
+    @Override
+    public void printCurrentState() {
+        System.out.println("DoorBlocked");
+    }
 }

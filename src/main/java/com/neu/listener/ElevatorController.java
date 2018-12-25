@@ -55,6 +55,10 @@ public class ElevatorController implements DoorSensorListener, ElevatorPanelList
 
     }
 
+    public void print(){
+        currentState.printCurrentState();
+    }
+
     public void floorButtonPressed(int floorNum) {
         if (floorNum > currentFloorNum) {
             upList.add(floorNum);

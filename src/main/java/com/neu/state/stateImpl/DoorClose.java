@@ -42,4 +42,9 @@ public class DoorClose implements State {
     public void closeDoor() {
 
     }
+
+    @Override
+    public void printCurrentState() {
+        System.out.println("DoorClose");
+    }
 }

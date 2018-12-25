@@ -22,11 +22,16 @@ public class DoorOpen implements State {
 
     @Override
     public void closeDoor() {
-        if(true){
+        if(false){
             elevatorController.setCurrentState(elevatorController.getDoorBlocked());
         }
         else {
             elevatorController.setCurrentState(elevatorController.getDoorClose());
         }
+    }
+
+    @Override
+    public void printCurrentState() {
+        System.out.println("DoorOpen");
     }
 }

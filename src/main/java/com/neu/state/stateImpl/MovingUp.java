@@ -31,4 +31,9 @@ public class MovingUp implements State {
     public void closeDoor() {
 
     }
+
+    @Override
+    public void printCurrentState() {
+        System.out.println("MovingUp");
+    }
 }

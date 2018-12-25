@@ -12,7 +12,7 @@ public class MovingDown implements State {
 
     @Override
     public void moving() {
-        int listSize = elevatorController.getDownList().size();
+        int listSize = elevatorController.getDownList().size() - 1;
         int aimFloorNum = elevatorController.getDownList().get(listSize);
         int tempFloorNum = elevatorController.getCurrentFloorNum();
         while(tempFloorNum != aimFloorNum){
@@ -31,5 +31,10 @@ public class MovingDown implements State {
     @Override
     public void closeDoor() {
 
+    }
+
+    @Override
+    public void printCurrentState() {
+        System.out.println("MovingDown");
     }
 }
