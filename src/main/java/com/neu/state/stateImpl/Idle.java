@@ -17,13 +17,15 @@ public class Idle implements State {
 
     @Override
     public void openDoor() {
+        elevatorController.doorOpen();
+        elevatorController.setNotice("Door opened.");
         elevatorController.setCurrentState(elevatorController.getDoorOpen());
         elevatorController.getCurrentState().openDoor();
     }
 
     @Override
     public void closeDoor() {
-        elevatorController.setNotice("The door is closed.");
+        elevatorController.setNotice("The door is already closed.");
         elevatorController.setCurrentState(elevatorController.getDoorClose());
     }
 

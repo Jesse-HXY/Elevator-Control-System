@@ -22,4 +22,5 @@ public class ElevatorPanel {
         listeners = new ArrayList<>();
         listeners.add(ElevatorController.getInstance());
     }
+
 }

@@ -1,5 +1,6 @@
 package com.neu.listener;
 
+import com.neu.fxController.FxController;
 import com.neu.state.State;
 import com.neu.state.stateImpl.*;
 
@@ -24,6 +25,7 @@ public class ElevatorController implements DoorSensorListener, ElevatorPanelList
     private int aimFloorNum;
     private boolean isUp;
     private String notice;
+    private String doorState;
 
     public void openButtonPressed() {
         currentState.openDoor();
@@ -31,9 +33,9 @@ public class ElevatorController implements DoorSensorListener, ElevatorPanelList
 
     public void closedButtonPressed() {
         currentState.closeDoor();
-        if(currentState == doorClose){
+        if (currentState == doorClose) {
             currentState.moving();
-            if(currentState != stop){
+            if (currentState != stop) {
                 currentState.moving();
             }
         }
@@ -44,15 +46,15 @@ public class ElevatorController implements DoorSensorListener, ElevatorPanelList
     }
 
     public void doorOpen() {
-
+        doorState = "open";
     }
 
     public void doorClosed() {
-
+        doorState = "close";
     }
 
     public void doorBlocked() {
-
+        doorState = "blocked";
     }
 
     public void print(){
@@ -70,20 +72,21 @@ public class ElevatorController implements DoorSensorListener, ElevatorPanelList
     }
 
     private ElevatorController() {
-        currentFloorNum = 1;
-        aimFloorNum = 1;
-        isReached = false;
-        isUp = true;
-        upList = new ArrayList<>();
-        downList = new ArrayList<>();
-        doorBlocked = new DoorBlocked(this);
-        doorClose = new DoorClose(this);
-        doorOpen = new DoorOpen(this);
-        idle = new Idle(this);
-        movingDown = new MovingDown(this);
-        movingUp = new MovingUp(this);
-        stop = new Stop(this);
-        currentState = idle;
+        this.currentFloorNum = 1;
+        this.aimFloorNum = 1;
+        this.doorState = "closed";
+        this.isReached = false;
+        this.isUp = true;
+        this.upList = new ArrayList<>();
+        this.downList = new ArrayList<>();
+        this.doorBlocked = new DoorBlocked(this);
+        this.doorClose = new DoorClose(this);
+        this.doorOpen = new DoorOpen(this);
+        this.idle = new Idle(this);
+        this.movingDown = new MovingDown(this);
+        this.movingUp = new MovingUp(this);
+        this.stop = new Stop(this);
+        this.currentState = idle;
     }
 
     public static synchronized ElevatorController getInstance() {
@@ -91,6 +94,14 @@ public class ElevatorController implements DoorSensorListener, ElevatorPanelList
             elevatorController = new ElevatorController();
         }
         return elevatorController;
+    }
+
+    public String getDoorState() {
+        return doorState;
+    }
+
+    public void setDoorState(String doorState) {
+        this.doorState = doorState;
     }
 
     public String getNotice() {

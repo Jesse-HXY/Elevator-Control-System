@@ -9,15 +9,15 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="398.0" prefWidth="687.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.neu.fxController.FxController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="398.0" prefWidth="815.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.neu.fxController.FxController">
     <children>
-        <SplitPane dividerPositions="0.2946768060836502" layoutX="3.0" layoutY="-1.0" prefHeight="400.0" prefWidth="685.0">
+        <SplitPane dividerPositions="0.39676796912686924" layoutX="-2.0" layoutY="-1.0" prefHeight="400.0" prefWidth="831.0">
             <items>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="398.0" prefWidth="254.0">
                     <children>
-                        <TitledPane prefHeight="400.0" prefWidth="200.0" text="Elevator Control Pane">
+                        <TitledPane layoutX="-8.0" layoutY="-1.0" prefHeight="400.0" prefWidth="334.0" text="Elevator Control Pane">
                             <content>
-                                <GridPane>
+                                <GridPane prefHeight="374.0" prefWidth="224.0">
                                     <columnConstraints>
                                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                     </columnConstraints>
@@ -28,39 +28,40 @@
                                     <children>
                                         <GridPane prefHeight="222.0" prefWidth="117.0">
                                             <columnConstraints>
-                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                             </columnConstraints>
                                             <rowConstraints>
+                                                <RowConstraints />
                                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                             </rowConstraints>
                                             <children>
-                                                <Button fx:id="oneButton" mnemonicParsing="false" onAction="#oneButtonAction" prefHeight="112.0" prefWidth="98.0" text="1" GridPane.rowIndex="2" />
-                                                <Button fx:id="fiveButton" mnemonicParsing="false" onAction="#fiveButtonAction" prefHeight="113.0" prefWidth="142.0" text="5" />
-                                                <Button fx:id="threeButton" mnemonicParsing="false" onAction="#threeButtonAction" prefHeight="134.0" prefWidth="98.0" text="3" GridPane.rowIndex="1" />
-                                                <Button fx:id="sixButton" mnemonicParsing="false" onAction="#sixButtonAction" prefHeight="118.0" prefWidth="98.0" text="6" GridPane.columnIndex="1" />
-                                                <Button fx:id="twoButton" mnemonicParsing="false" onAction="#twoButtonAction" prefHeight="106.0" prefWidth="94.0" text="2" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                                <Button fx:id="fourButton" mnemonicParsing="false" onAction="#fourButtonAction" prefHeight="127.0" prefWidth="94.0" text="4" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                                <Button fx:id="openButton" mnemonicParsing="false" onAction="#openButtonAction" prefHeight="135.0" prefWidth="98.0" text="open" GridPane.rowIndex="3" />
-                                                <Button fx:id="closeButton" mnemonicParsing="false" onAction="#closeButtonAction" prefHeight="122.0" prefWidth="98.0" text="close" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                                <Button fx:id="oneButton" mnemonicParsing="false" onAction="#oneButtonAction" prefHeight="78.0" prefWidth="98.0" text="1" GridPane.rowIndex="3" />
+                                                <Button fx:id="fiveButton" mnemonicParsing="false" onAction="#fiveButtonAction" prefHeight="81.0" prefWidth="98.0" text="5" GridPane.rowIndex="1" />
+                                                <Button fx:id="threeButton" mnemonicParsing="false" onAction="#threeButtonAction" prefHeight="134.0" prefWidth="98.0" text="3" GridPane.rowIndex="2" />
+                                                <Button fx:id="sixButton" mnemonicParsing="false" onAction="#sixButtonAction" prefHeight="82.0" prefWidth="94.0" text="6" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                <Button fx:id="twoButton" mnemonicParsing="false" onAction="#twoButtonAction" prefHeight="78.0" prefWidth="94.0" text="2" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                                <Button fx:id="fourButton" mnemonicParsing="false" onAction="#fourButtonAction" prefHeight="82.0" prefWidth="94.0" text="4" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                                <Button fx:id="openButton" mnemonicParsing="false" onAction="#openButtonAction" prefHeight="135.0" prefWidth="98.0" text="open" GridPane.rowIndex="4" />
+                                                <Button fx:id="closeButton" mnemonicParsing="false" onAction="#closeButtonAction" prefHeight="81.0" prefWidth="95.0" text="close" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                                             </children>
                                         </GridPane>
-                                        <GridPane GridPane.rowIndex="1">
-                                            <columnConstraints>
-                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="85.20001220703125" minWidth="10.0" prefWidth="69.59998016357422" />
-                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="146.79997634887695" minWidth="10.0" prefWidth="110.40001983642578" />
-                                            </columnConstraints>
-                                            <rowConstraints>
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                            </rowConstraints>
-                                            <children>
-                                                <Label prefHeight="18.0" prefWidth="76.0" text="*notice:" />
-                                                <Label fx:id="notice" prefHeight="18.0" prefWidth="102.0" textFill="RED" GridPane.columnIndex="1" />
-                                            </children>
-                                        </GridPane>
+                              <GridPane GridPane.rowIndex="1">
+                                <columnConstraints>
+                                  <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="152.199951171875" minWidth="10.0" prefWidth="83.20000610351562" />
+                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="274.99999237060547" minWidth="10.0" prefWidth="231.19999389648436" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                </rowConstraints>
+                                 <children>
+                                    <Label fx:id="notice" prefHeight="18.0" prefWidth="274.0" textFill="RED" GridPane.columnIndex="1" />
+                                    <Label alignment="TOP_RIGHT" prefHeight="18.0" prefWidth="77.0" text="*notice:  " />
+                                 </children>
+                              </GridPane>
                                     </children>
                                 </GridPane>
                             </content>
@@ -69,7 +70,7 @@
                 </AnchorPane>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="399.0" prefWidth="464.0">
                     <children>
-                        <GridPane layoutX="1.0" layoutY="-2.0" prefHeight="398.0" prefWidth="480.0">
+                        <GridPane layoutX="25.0" prefHeight="398.0" prefWidth="458.0">
                             <columnConstraints>
                                 <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="119.20001220703125" minWidth="10.0" prefWidth="63.79996871948242" />
                                 <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="184.79998779296875" minWidth="10.0" prefWidth="86.99998779296874" />
@@ -111,7 +112,7 @@
                                 <Label fx:id="twoGap" textFill="RED" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                                 <Label fx:id="twoFloor" textFill="RED" GridPane.columnIndex="1" GridPane.rowIndex="8" />
                                 <Label fx:id="oneGap" textFill="RED" GridPane.columnIndex="1" GridPane.rowIndex="9" />
-                                <Label fx:id="oneFloor" text="*****" textFill="RED" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+                                <Label fx:id="oneFloor" textFill="RED" GridPane.columnIndex="1" GridPane.rowIndex="10" />
                                 <Label text="Door state:" GridPane.columnIndex="2" GridPane.rowIndex="2" />
                                 <Label text="Door state:" GridPane.columnIndex="2" />
                                 <Label text="Door state:" GridPane.columnIndex="2" GridPane.rowIndex="4" />
@@ -122,7 +123,7 @@
                                 <Label fx:id="fourDoor" textFill="RED" GridPane.columnIndex="3" GridPane.rowIndex="4" />
                                 <Label fx:id="threeDoor" textFill="RED" GridPane.columnIndex="3" GridPane.rowIndex="6" />
                                 <Label fx:id="twoDoor" textFill="RED" GridPane.columnIndex="3" GridPane.rowIndex="8" />
-                                <Label fx:id="oneDoor" text="Close" textFill="RED" GridPane.columnIndex="3" GridPane.rowIndex="10" />
+                                <Label fx:id="oneDoor" textFill="RED" GridPane.columnIndex="3" GridPane.rowIndex="10" />
                                 <Label fx:id="sixDoor" textFill="RED" GridPane.columnIndex="3" />
                             </children>
                         </GridPane>

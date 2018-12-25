@@ -1,6 +1,5 @@
 package com.neu.fxController;
 
-
 import com.neu.listener.ElevatorController;
 import com.neu.sensor.DoorSensor;
 import com.neu.sensor.ElevatorPanel;
@@ -9,6 +8,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class FxController {
@@ -65,56 +67,187 @@ public class FxController {
     @FXML
     private Label sixDoor;
 
-    private  DoorSensor doorSensor = new DoorSensor();
-    private  ElevatorPanel elevatorPanel = new ElevatorPanel();
-    private  FloorSensor floorSensor = new FloorSensor();
-
+    private DoorSensor doorSensor = new DoorSensor();
+    private ElevatorPanel elevatorPanel = new ElevatorPanel();
+    private FloorSensor floorSensor = new FloorSensor();
 
     @FXML
     public void openButtonAction(ActionEvent event) {
         elevatorPanel.getListeners().get(0).openButtonPressed();
+        ((ElevatorController) (elevatorPanel.getListeners().get(0))).print();
+        setNotice();
+        updateState();
     }
 
     @FXML
     public void closeButtonAction(ActionEvent event) {
         elevatorPanel.getListeners().get(0).closedButtonPressed();
+        ((ElevatorController) (elevatorPanel.getListeners().get(0))).print();
+        setNotice();
+        setColorBack();
+        updateState();
     }
 
     @FXML
     public void oneButtonAction(ActionEvent event) {
-        oneButton.setStyle("-fx-background-color: red");
+        oneButton.setStyle("-fx-border-color:red");
         elevatorPanel.getListeners().get(0).floorButtonPressed(1);
     }
 
     @FXML
     public void twoButtonAction(ActionEvent event) {
-        twoButton.setStyle("-fx-background-color: red");
+        twoButton.setStyle("-fx-border-color:red");
         elevatorPanel.getListeners().get(0).floorButtonPressed(2);
     }
 
     @FXML
     public void threeButtonAction(ActionEvent event) {
-        threeButton.setStyle("-fx-background-color: red");
+        threeButton.setStyle("-fx-border-color:red");
         elevatorPanel.getListeners().get(0).floorButtonPressed(3);
     }
 
     @FXML
     public void fourButtonAction(ActionEvent event) {
-        fourButton.setStyle("-fx-background-color: red");
+        fourButton.setStyle("-fx-border-color:red");
         elevatorPanel.getListeners().get(0).floorButtonPressed(4);
     }
 
     @FXML
     public void fiveButtonAction(ActionEvent event) {
-        fiveButton.setStyle("-fx-background-color: red");
+        fiveButton.setStyle("-fx-border-color:red");
         elevatorPanel.getListeners().get(0).floorButtonPressed(5);
     }
 
     @FXML
     public void sixButtonAction(ActionEvent event) {
-        sixButton.setStyle("-fx-background-color: red");
+        sixButton.setStyle("-fx-border-color:red");
         elevatorPanel.getListeners().get(0).floorButtonPressed(6);
     }
 
+    public void setNotice(){
+        notice.setText(((ElevatorController) (elevatorPanel.getListeners().get(0))).getNotice());
+    }
 
+    public void setColorBack() {
+        List<Integer> upList = ((ElevatorController) (elevatorPanel.getListeners().get(0))).getUpList();
+        List<Integer> downList = ((ElevatorController) (elevatorPanel.getListeners().get(0))).getDownList();
+        List<Integer> list = new ArrayList<>();
+        list.addAll(upList);
+        list.addAll(downList);
+        for (int l : list) {
+            switch (l) {
+                case 1:
+                    oneButton.setStyle("-fx-border-color:null");
+                    break;
+                case 2:
+                    twoButton.setStyle("-fx-border-color:null");
+                    break;
+                case 3:
+                    threeButton.setStyle("-fx-border-color:null");
+                    break;
+                case 4:
+                    fourButton.setStyle("-fx-border-color:null");
+                    break;
+                case 5:
+                    fiveButton.setStyle("-fx-border-color:null");
+                    break;
+                case 6:
+                    sixButton.setStyle("-fx-border-color:null");
+                    break;
+            }
+        }
+    }
+
+
+
+    public void updateState() {
+        int floorNum = ((ElevatorController) (elevatorPanel.getListeners().get(0))).getCurrentFloorNum();
+        String doorState = ((ElevatorController) (elevatorPanel.getListeners().get(0))).getDoorState();
+        switch (floorNum) {
+            case 1:
+                oneFloor.setText("*****");
+                twoFloor.setText("");
+                threeFloor.setText("");
+                fourFloor.setText("");
+                fiveFloor.setText("");
+                sixFloor.setText("");
+                oneDoor.setText(doorState);
+                twoDoor.setText("");
+                threeDoor.setText("");
+                fourDoor.setText("");
+                fiveDoor.setText("");
+                sixDoor.setText("");
+                break;
+            case 2:
+                oneFloor.setText("");
+                twoFloor.setText("*****");
+                threeFloor.setText("");
+                fourFloor.setText("");
+                fiveFloor.setText("");
+                sixFloor.setText("");
+                oneDoor.setText("");
+                twoDoor.setText(doorState);
+                threeDoor.setText("");
+                fourDoor.setText("");
+                fiveDoor.setText("");
+                sixDoor.setText("");
+                break;
+            case 3:
+                oneFloor.setText("");
+                twoFloor.setText("");
+                threeFloor.setText("*****");
+                fourFloor.setText("");
+                fiveFloor.setText("");
+                sixFloor.setText("");
+                oneDoor.setText("");
+                twoDoor.setText("");
+                threeDoor.setText(doorState);
+                fourDoor.setText("");
+                fiveDoor.setText("");
+                sixDoor.setText("");
+                break;
+            case 4:
+                oneFloor.setText("");
+                twoFloor.setText("");
+                threeFloor.setText("");
+                fourFloor.setText("*****");
+                fiveFloor.setText("");
+                sixFloor.setText("");
+                oneDoor.setText("");
+                twoDoor.setText("");
+                threeDoor.setText("");
+                fourDoor.setText(doorState);
+                fiveDoor.setText("");
+                sixDoor.setText("");
+                break;
+            case 5:
+                oneFloor.setText("");
+                twoFloor.setText("");
+                threeFloor.setText("");
+                fourFloor.setText("");
+                fiveFloor.setText("*****");
+                sixFloor.setText("");
+                oneDoor.setText("");
+                twoDoor.setText("");
+                threeDoor.setText("");
+                fourDoor.setText("");
+                fiveDoor.setText(doorState);
+                sixDoor.setText("");
+                break;
+            case 6:
+                oneFloor.setText("");
+                twoFloor.setText("");
+                threeFloor.setText("");
+                fourFloor.setText("");
+                fiveFloor.setText("");
+                sixFloor.setText("*****");
+                oneDoor.setText("");
+                twoDoor.setText("");
+                threeDoor.setText("");
+                fourDoor.setText("");
+                fiveDoor.setText("");
+                sixDoor.setText(doorState);
+                break;
+        }
+    }
 }
