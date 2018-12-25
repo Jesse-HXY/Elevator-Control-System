@@ -13,6 +13,7 @@ public class DoorClose implements State {
     public void moving() {
         if(elevatorController.getDownList().size() == 0 && elevatorController.getUpList().size() == 0){
             elevatorController.setCurrentState(elevatorController.getIdle());
+            elevatorController.setNotice("Idle");
         }
         else {
             if (elevatorController.isUp()) {
@@ -30,17 +31,19 @@ public class DoorClose implements State {
                     elevatorController.setCurrentState(elevatorController.getMovingDown());
                 }
             }
+            elevatorController.setNotice("Moving");
         }
     }
 
     @Override
     public void openDoor() {
+        elevatorController.setNotice("Door Open");
         elevatorController.setCurrentState(elevatorController.getDoorOpen());
     }
 
     @Override
     public void closeDoor() {
-
+        elevatorController.setNotice("Door already close");
     }
 
     @Override

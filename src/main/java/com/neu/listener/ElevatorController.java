@@ -1,6 +1,5 @@
 package com.neu.listener;
 
-import com.neu.fxController.FxController;
 import com.neu.state.State;
 import com.neu.state.stateImpl.*;
 
@@ -39,6 +38,10 @@ public class ElevatorController implements DoorSensorListener, ElevatorPanelList
                 currentState.moving();
             }
         }
+    }
+
+    public void moving(){
+        currentState.moving();
     }
 
     public void floorReached() {

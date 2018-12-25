@@ -12,17 +12,17 @@ public class DoorBlocked implements State {
 
     @Override
     public void moving() {
-
+        elevatorController.setNotice("Something is blocking.");
     }
 
     @Override
     public void openDoor() {
-
+        elevatorController.setNotice("Door already open");
     }
 
     @Override
     public void closeDoor() {
-
+        elevatorController.setNotice("Something is blocking.");
     }
 
     @Override

@@ -21,16 +21,17 @@ public class MovingDown implements State {
         }
         elevatorController.getDownList().remove(listSize);
         elevatorController.setCurrentState(elevatorController.getStop());
+        elevatorController.setNotice("Moving");
     }
 
     @Override
     public void openDoor() {
-
+        elevatorController.setNotice("Moving");
     }
 
     @Override
     public void closeDoor() {
-
+        elevatorController.setNotice("Door already close");
     }
 
     @Override
