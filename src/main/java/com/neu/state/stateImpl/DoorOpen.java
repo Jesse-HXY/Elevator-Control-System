@@ -11,6 +11,11 @@ public class DoorOpen implements State {
 
 
     @Override
+    public void prepare() {
+
+    }
+
+    @Override
     public void moving() {
         elevatorController.setNotice("Door open");
     }

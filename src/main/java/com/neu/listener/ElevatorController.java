@@ -31,13 +31,16 @@ public class ElevatorController implements DoorSensorListener, ElevatorPanelList
     }
 
     public void closedButtonPressed() {
-        currentState.closeDoor();
+        /*currentState.closeDoor();
         if (currentState == doorClose) {
             currentState.moving();
             if (currentState != stop) {
                 currentState.moving();
             }
-        }
+        }*/
+        currentState.closeDoor();
+        currentState.prepare();
+        currentState.moving();
     }
 
     public void moving(){

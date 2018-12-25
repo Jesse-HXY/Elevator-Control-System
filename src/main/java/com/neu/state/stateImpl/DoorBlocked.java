@@ -11,6 +11,11 @@ public class DoorBlocked implements State {
 
 
     @Override
+    public void prepare() {
+
+    }
+
+    @Override
     public void moving() {
         elevatorController.setNotice("Something is blocking.");
     }

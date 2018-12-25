@@ -10,6 +10,11 @@ public class Stop implements State {
     }
 
     @Override
+    public void prepare() {
+
+    }
+
+    @Override
     public void moving() {
         elevatorController.setNotice("open door first");
     }

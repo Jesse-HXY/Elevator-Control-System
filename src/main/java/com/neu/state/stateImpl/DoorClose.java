@@ -10,7 +10,7 @@ public class DoorClose implements State {
     }
 
     @Override
-    public void moving() {
+    public void prepare() {
         if(elevatorController.getDownList().size() == 0 && elevatorController.getUpList().size() == 0){
             elevatorController.setCurrentState(elevatorController.getIdle());
             elevatorController.setNotice("Idle");
@@ -33,6 +33,11 @@ public class DoorClose implements State {
             }
             elevatorController.setNotice("Moving");
         }
+    }
+
+    @Override
+    public void moving() {
+
     }
 
     @Override

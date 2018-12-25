@@ -11,6 +11,11 @@ public class Idle implements State {
 
 
     @Override
+    public void prepare() {
+
+    }
+
+    @Override
     public void moving() {
 
     }
