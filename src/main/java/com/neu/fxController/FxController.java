@@ -9,9 +9,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
-import java.util.ArrayList;
-import java.util.List;
-
 
 public class FxController {
     @FXML
@@ -70,6 +67,7 @@ public class FxController {
     private DoorSensor doorSensor = new DoorSensor();
     private ElevatorPanel elevatorPanel = new ElevatorPanel();
     private FloorSensor floorSensor = new FloorSensor();
+    private ElevatorController elevatorController = ((ElevatorController) (elevatorPanel.getListeners().get(0)));
 
     @FXML
     public void openButtonAction(ActionEvent event) {
@@ -124,37 +122,30 @@ public class FxController {
         elevatorPanel.getListeners().get(0).floorButtonPressed(6);
     }
 
-    public void setNotice(){
+    public void setNotice() {
         notice.setText(((ElevatorController) (elevatorPanel.getListeners().get(0))).getNotice());
     }
 
     public void setColorBack() {
-        List<Integer> upList = ((ElevatorController) (elevatorPanel.getListeners().get(0))).getUpList();
-        List<Integer> downList = ((ElevatorController) (elevatorPanel.getListeners().get(0))).getDownList();
-        List<Integer> list = new ArrayList<>();
-        list.addAll(upList);
-        list.addAll(downList);
-        for (int l : list) {
-            switch (l) {
-                case 1:
-                    oneButton.setStyle("-fx-border-color:null");
-                    break;
-                case 2:
-                    twoButton.setStyle("-fx-border-color:null");
-                    break;
-                case 3:
-                    threeButton.setStyle("-fx-border-color:null");
-                    break;
-                case 4:
-                    fourButton.setStyle("-fx-border-color:null");
-                    break;
-                case 5:
-                    fiveButton.setStyle("-fx-border-color:null");
-                    break;
-                case 6:
-                    sixButton.setStyle("-fx-border-color:null");
-                    break;
-            }
+        switch (elevatorController.getCurrentFloorNum()) {
+            case 1:
+                oneButton.setStyle("-fx-border-color:null");
+                break;
+            case 2:
+                twoButton.setStyle("-fx-border-color:null");
+                break;
+            case 3:
+                threeButton.setStyle("-fx-border-color:null");
+                break;
+            case 4:
+                fourButton.setStyle("-fx-border-color:null");
+                break;
+            case 5:
+                fiveButton.setStyle("-fx-border-color:null");
+                break;
+            case 6:
+                sixButton.setStyle("-fx-border-color:null");
+                break;
         }
     }
 

@@ -20,7 +20,6 @@ public class Idle implements State {
         elevatorController.doorOpen();
         elevatorController.setNotice("Door opened.");
         elevatorController.setCurrentState(elevatorController.getDoorOpen());
-        elevatorController.getCurrentState().openDoor();
     }
 
     @Override
