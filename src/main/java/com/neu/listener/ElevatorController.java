@@ -38,13 +38,15 @@ public class ElevatorController implements DoorSensorListener, ElevatorPanelList
                 currentState.moving();
             }
         }*/
+        CalcualateAimFloorNum();
         currentState.closeDoor();
         currentState.prepare();
-        currentState.moving();
+        //currentState.moving();
     }
 
-    public void moving(){
+    public boolean moving(){
         currentState.moving();
+        return (currentFloorNum != aimFloorNum);
     }
 
     public void floorReached() {
@@ -198,7 +200,12 @@ public class ElevatorController implements DoorSensorListener, ElevatorPanelList
         isReached = reached;
     }
 
-    public int getAimFloorNum() {
+    public int CalcualateAimFloorNum() {
+        if(isUp){
+            aimFloorNum = upList.get(0);
+        }else{
+            aimFloorNum = downList.get(downList.size() - 1);
+        }
         return aimFloorNum;
     }
 

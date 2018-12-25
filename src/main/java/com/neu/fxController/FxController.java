@@ -9,6 +9,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
+import static java.lang.Thread.sleep;
+
 
 public class FxController {
     @FXML
@@ -78,12 +80,17 @@ public class FxController {
     }
 
     @FXML
-    public void closeButtonAction(ActionEvent event) {
+    public void closeButtonAction(ActionEvent event) throws InterruptedException {
         elevatorPanel.getListeners().get(0).closedButtonPressed();
+        while(elevatorController.moving()){
+            System.out.println(elevatorController.getCurrentFloorNum());
+            updateState();
+            sleep(1000);
+        }
+        updateState();
         ((ElevatorController) (elevatorPanel.getListeners().get(0))).print();
         setNotice();
         setColorBack();
-        updateState();
     }
 
     @FXML
