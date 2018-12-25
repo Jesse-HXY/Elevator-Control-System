@@ -13,12 +13,12 @@ public class MovingUp implements State {
     @Override
     public void moving() {
         int tempFloorNum = elevatorController.getCurrentFloorNum();
-        int aimFloorNum = elevatorController.getDownList().get(0);
+        int aimFloorNum = elevatorController.getUpList().get(0);
         while(tempFloorNum != aimFloorNum){
             tempFloorNum++;
             elevatorController.setCurrentFloorNum(tempFloorNum);
         }
-        elevatorController.getDownList().remove(0);
+        elevatorController.getUpList().remove(0);
         elevatorController.setCurrentState(elevatorController.getStop());
     }
 

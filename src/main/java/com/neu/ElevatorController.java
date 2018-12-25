@@ -4,7 +4,6 @@ import com.neu.state.State;
 import com.neu.state.stateImpl.*;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -163,10 +162,16 @@ public class ElevatorController {
     }
 
     public void openButtonPressed(){
-
+        currentState.openDoor();
     }
     public void closedButtonPressed(){
-
+        currentState.closeDoor();
+        if(currentState == doorClose){
+            currentState.moving();
+            if(currentState != stop){
+                currentState.moving();
+            }
+        }
     }
     public void floorReached(){
 

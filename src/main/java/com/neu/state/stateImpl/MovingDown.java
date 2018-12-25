@@ -13,13 +13,13 @@ public class MovingDown implements State {
     @Override
     public void moving() {
         int listSize = elevatorController.getDownList().size();
-        int aimFloorNum = elevatorController.getUpList().get(listSize);
+        int aimFloorNum = elevatorController.getDownList().get(listSize);
         int tempFloorNum = elevatorController.getCurrentFloorNum();
         while(tempFloorNum != aimFloorNum){
             tempFloorNum--;
             elevatorController.setCurrentFloorNum(tempFloorNum);
         }
-        elevatorController.getUpList().remove(listSize);
+        elevatorController.getDownList().remove(listSize);
         elevatorController.setCurrentState(elevatorController.getStop());
     }
 

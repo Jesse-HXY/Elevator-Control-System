@@ -11,7 +11,7 @@ public class DoorClose implements State {
 
     @Override
     public void moving() {
-        if(elevatorController.getDownList().size() == 0 && elevatorController.getDownList().size() == 0){
+        if(elevatorController.getDownList().size() == 0 && elevatorController.getUpList().size() == 0){
             elevatorController.setCurrentState(elevatorController.getIdle());
         }
         else {
