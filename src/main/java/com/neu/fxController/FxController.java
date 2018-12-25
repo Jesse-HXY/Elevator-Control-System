@@ -4,6 +4,7 @@ import com.neu.listener.ElevatorController;
 import com.neu.sensor.DoorSensor;
 import com.neu.sensor.ElevatorPanel;
 import com.neu.sensor.FloorSensor;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -71,24 +72,46 @@ public class FxController {
     private FloorSensor floorSensor = new FloorSensor();
     private ElevatorController elevatorController = ((ElevatorController) (elevatorPanel.getListeners().get(0)));
 
+//    public void updateByThread() {
+//        new Thread(() -> {
+//            try {
+//                // simulate the time delay of elevator motor in physical environment
+//                Thread.sleep(50);
+//                updateState();
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
+//
+//        }).start();
+//    }
     @FXML
     public void openButtonAction(ActionEvent event) {
         elevatorPanel.getListeners().get(0).openButtonPressed();
-        ((ElevatorController) (elevatorPanel.getListeners().get(0))).print();
+        elevatorController.print();
         setNotice();
         updateState();
     }
 
     @FXML
-    public void closeButtonAction(ActionEvent event) throws InterruptedException {
+    public void closeButtonAction(ActionEvent event)  {
         elevatorPanel.getListeners().get(0).closedButtonPressed();
-        while(elevatorController.moving()){
-            System.out.println(elevatorController.getCurrentFloorNum());
-            updateState();
-            sleep(1000);
-        }
-        updateState();
-        ((ElevatorController) (elevatorPanel.getListeners().get(0))).print();
+     //   new Thread(() -> Platform.runLater(this::updateState)).start();
+
+
+            new Thread(() -> {
+                try {
+                    while(elevatorController.moving()) {
+                        System.out.println(elevatorController.getCurrentFloorNum());
+                        Thread.sleep(1000);
+                        Platform.runLater(() -> {
+                            updateState();
+                        });
+                    }
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }).start();
+
         setNotice();
         setColorBack();
     }
@@ -96,41 +119,47 @@ public class FxController {
     @FXML
     public void oneButtonAction(ActionEvent event) {
         oneButton.setStyle("-fx-border-color:red");
+        notice.setText("Floor one selected");
         elevatorPanel.getListeners().get(0).floorButtonPressed(1);
     }
 
     @FXML
     public void twoButtonAction(ActionEvent event) {
         twoButton.setStyle("-fx-border-color:red");
-        elevatorPanel.getListeners().get(0).floorButtonPressed(2);
+        notice.setText("Floor two selected");
+        elevatorController.floorButtonPressed(2);
     }
 
     @FXML
     public void threeButtonAction(ActionEvent event) {
         threeButton.setStyle("-fx-border-color:red");
-        elevatorPanel.getListeners().get(0).floorButtonPressed(3);
+        notice.setText("Floor three selected");
+        elevatorController.floorButtonPressed(3);
     }
 
     @FXML
     public void fourButtonAction(ActionEvent event) {
         fourButton.setStyle("-fx-border-color:red");
-        elevatorPanel.getListeners().get(0).floorButtonPressed(4);
+        notice.setText("Floor four selected");
+        elevatorController.floorButtonPressed(4);
     }
 
     @FXML
     public void fiveButtonAction(ActionEvent event) {
         fiveButton.setStyle("-fx-border-color:red");
-        elevatorPanel.getListeners().get(0).floorButtonPressed(5);
+        notice.setText("Floor five selected");
+        elevatorController.floorButtonPressed(5);
     }
 
     @FXML
     public void sixButtonAction(ActionEvent event) {
         sixButton.setStyle("-fx-border-color:red");
-        elevatorPanel.getListeners().get(0).floorButtonPressed(6);
+        notice.setText("Floor six selected");
+        elevatorController.floorButtonPressed(6);
     }
 
     public void setNotice() {
-        notice.setText(((ElevatorController) (elevatorPanel.getListeners().get(0))).getNotice());
+        notice.setText(elevatorController.getNotice());
     }
 
     public void setColorBack() {
@@ -159,8 +188,8 @@ public class FxController {
 
 
     public void updateState() {
-        int floorNum = ((ElevatorController) (elevatorPanel.getListeners().get(0))).getCurrentFloorNum();
-        String doorState = ((ElevatorController) (elevatorPanel.getListeners().get(0))).getDoorState();
+        int floorNum = elevatorController.getCurrentFloorNum();
+        String doorState = elevatorController.getDoorState();
         switch (floorNum) {
             case 1:
                 oneFloor.setText("*****");

@@ -41,7 +41,6 @@ public class ElevatorController implements DoorSensorListener, ElevatorPanelList
         CalcualateAimFloorNum();
         currentState.closeDoor();
         currentState.prepare();
-        //currentState.moving();
     }
 
     public boolean moving(){

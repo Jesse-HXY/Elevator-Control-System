@@ -112,7 +112,7 @@
                                 <Label fx:id="twoGap" textFill="RED" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                                 <Label fx:id="twoFloor" textFill="RED" GridPane.columnIndex="1" GridPane.rowIndex="8" />
                                 <Label fx:id="oneGap" textFill="RED" GridPane.columnIndex="1" GridPane.rowIndex="9" />
-                                <Label fx:id="oneFloor" textFill="RED" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+                                <Label fx:id="oneFloor" text="*****" textFill="RED" GridPane.columnIndex="1" GridPane.rowIndex="10" />
                                 <Label text="Door state:" GridPane.columnIndex="2" GridPane.rowIndex="2" />
                                 <Label text="Door state:" GridPane.columnIndex="2" />
                                 <Label text="Door state:" GridPane.columnIndex="2" GridPane.rowIndex="4" />
@@ -123,7 +123,7 @@
                                 <Label fx:id="fourDoor" textFill="RED" GridPane.columnIndex="3" GridPane.rowIndex="4" />
                                 <Label fx:id="threeDoor" textFill="RED" GridPane.columnIndex="3" GridPane.rowIndex="6" />
                                 <Label fx:id="twoDoor" textFill="RED" GridPane.columnIndex="3" GridPane.rowIndex="8" />
-                                <Label fx:id="oneDoor" textFill="RED" GridPane.columnIndex="3" GridPane.rowIndex="10" />
+                                <Label fx:id="oneDoor" text="closed" textFill="RED" GridPane.columnIndex="3" GridPane.rowIndex="10" />
                                 <Label fx:id="sixDoor" textFill="RED" GridPane.columnIndex="3" />
                             </children>
                         </GridPane>
