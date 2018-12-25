@@ -24,5 +24,6 @@ public class Idle implements State {
     @Override
     public void closeDoor() {
         elevatorController.setNotice("The door is closed.");
+        elevatorController.setCurrentState(elevatorController.getDoorClose());
     }
 }
