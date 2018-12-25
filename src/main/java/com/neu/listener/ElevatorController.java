@@ -1,4 +1,4 @@
-package com.neu;
+package com.neu.listener;
 
 import com.neu.state.State;
 import com.neu.state.stateImpl.*;
@@ -7,7 +7,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class ElevatorController {
+public class ElevatorController implements DoorSensorListener, ElevatorPanelListener, FloorSensorListener {
+    private static ElevatorController elevatorController;
     private State doorBlocked;
     private State doorClose;
     private State doorOpen;
@@ -22,7 +23,43 @@ public class ElevatorController {
     private List<Integer> downList;
     private int aimFloorNum;
     private boolean isUp;
-    public ElevatorController(){
+    private String notice;
+
+    public void openButtonPressed() {
+        currentState.openDoor();
+    }
+
+    public void closedButtonPressed() {
+
+    }
+
+    public void floorReached() {
+
+    }
+
+    public void doorOpen() {
+
+    }
+
+    public void doorClosed() {
+
+    }
+
+    public void doorBlocked() {
+
+    }
+
+    public void floorButtonPressed(int floorNum) {
+        if (floorNum > currentFloorNum) {
+            upList.add(floorNum);
+            Collections.sort(upList);
+        } else {
+            downList.add(floorNum);
+            Collections.sort(downList);
+        }
+    }
+
+    private ElevatorController() {
         currentFloorNum = 1;
         aimFloorNum = 1;
         isReached = false;
@@ -39,7 +76,22 @@ public class ElevatorController {
         currentState = idle;
     }
 
-    public void setCurrentState(State state){
+    public static synchronized ElevatorController getInstance() {
+        if (elevatorController == null) {
+            elevatorController = new ElevatorController();
+        }
+        return elevatorController;
+    }
+
+    public String getNotice() {
+        return notice;
+    }
+
+    public void setNotice(String notice) {
+        this.notice = notice;
+    }
+
+    public void setCurrentState(State state) {
         this.currentState = state;
     }
 
@@ -143,16 +195,6 @@ public class ElevatorController {
         this.downList = downList;
     }
 
-    public void floorButtonPressed(int floorNum){
-        if(floorNum > currentFloorNum){
-            upList.add(floorNum);
-            Collections.sort(upList);
-        }else{
-            downList.add(floorNum);
-            Collections.sort(downList);
-        }
-    }
-
     public boolean isUp() {
         return isUp;
     }
@@ -161,29 +203,5 @@ public class ElevatorController {
         isUp = up;
     }
 
-    public void openButtonPressed(){
-        currentState.openDoor();
-    }
-    public void closedButtonPressed(){
-        currentState.closeDoor();
-        if(currentState == doorClose){
-            currentState.moving();
-            if(currentState != stop){
-                currentState.moving();
-            }
-        }
-    }
-    public void floorReached(){
-
-    }
-    public void doorOpen(){
-
-    }
-    public void doorClosed(){
-
-    }
-    public void doorBlocked(){
-
-    }
 
 }
