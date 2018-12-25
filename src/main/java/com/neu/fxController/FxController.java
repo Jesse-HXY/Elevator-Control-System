@@ -72,18 +72,7 @@ public class FxController {
     private FloorSensor floorSensor = new FloorSensor();
     private ElevatorController elevatorController = ((ElevatorController) (elevatorPanel.getListeners().get(0)));
 
-//    public void updateByThread() {
-//        new Thread(() -> {
-//            try {
-//                // simulate the time delay of elevator motor in physical environment
-//                Thread.sleep(50);
-//                updateState();
-//            } catch (InterruptedException e) {
-//                e.printStackTrace();
-//            }
-//
-//        }).start();
-//    }
+
     @FXML
     public void openButtonAction(ActionEvent event) {
         elevatorPanel.getListeners().get(0).openButtonPressed();
@@ -93,31 +82,33 @@ public class FxController {
     }
 
     @FXML
-    public void closeButtonAction(ActionEvent event)  {
+    public void closeButtonAction(ActionEvent event) {
         elevatorPanel.getListeners().get(0).closedButtonPressed();
-     //   new Thread(() -> Platform.runLater(this::updateState)).start();
-
-
-            new Thread(() -> {
-                try {
-                    while(elevatorController.moving()) {
-                        System.out.println(elevatorController.getCurrentFloorNum());
-                        Thread.sleep(1000);
-                        Platform.runLater(() -> {
-                            updateState();
-                        });
-                    }
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
+        new Thread(() -> {
+            try {
+                while (elevatorController.moving()) {
+                    System.out.println(elevatorController.getCurrentFloorNum());
+                    Thread.sleep(1000);
+                    Platform.runLater(() -> {
+                        updateState();
+                        setNotice();
+                        setColorBack();
+                    });
                 }
-            }).start();
+                Platform.runLater(() -> notice.setText("Arrived"));
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }).start();
 
-        setNotice();
-        setColorBack();
     }
 
     @FXML
     public void oneButtonAction(ActionEvent event) {
+        if (elevatorController.getCurrentFloorNum() == 1) {
+            notice.setText("you are already in floor 1");
+            return;
+        }
         oneButton.setStyle("-fx-border-color:red");
         notice.setText("Floor one selected");
         elevatorPanel.getListeners().get(0).floorButtonPressed(1);
@@ -125,6 +116,10 @@ public class FxController {
 
     @FXML
     public void twoButtonAction(ActionEvent event) {
+        if (elevatorController.getCurrentFloorNum() == 2) {
+            notice.setText("you are already in floor 2");
+            return;
+        }
         twoButton.setStyle("-fx-border-color:red");
         notice.setText("Floor two selected");
         elevatorController.floorButtonPressed(2);
@@ -132,6 +127,10 @@ public class FxController {
 
     @FXML
     public void threeButtonAction(ActionEvent event) {
+        if (elevatorController.getCurrentFloorNum() == 3) {
+            notice.setText("you are already in floor 3");
+            return;
+        }
         threeButton.setStyle("-fx-border-color:red");
         notice.setText("Floor three selected");
         elevatorController.floorButtonPressed(3);
@@ -139,6 +138,10 @@ public class FxController {
 
     @FXML
     public void fourButtonAction(ActionEvent event) {
+        if (elevatorController.getCurrentFloorNum() == 4) {
+            notice.setText("you are already in floor 4");
+            return;
+        }
         fourButton.setStyle("-fx-border-color:red");
         notice.setText("Floor four selected");
         elevatorController.floorButtonPressed(4);
@@ -146,6 +149,10 @@ public class FxController {
 
     @FXML
     public void fiveButtonAction(ActionEvent event) {
+        if (elevatorController.getCurrentFloorNum() == 5) {
+            notice.setText("you are already in floor 5");
+            return;
+        }
         fiveButton.setStyle("-fx-border-color:red");
         notice.setText("Floor five selected");
         elevatorController.floorButtonPressed(5);
@@ -153,6 +160,10 @@ public class FxController {
 
     @FXML
     public void sixButtonAction(ActionEvent event) {
+        if (elevatorController.getCurrentFloorNum() == 6) {
+            notice.setText("you are already in floor 6");
+            return;
+        }
         sixButton.setStyle("-fx-border-color:red");
         notice.setText("Floor six selected");
         elevatorController.floorButtonPressed(6);
@@ -184,7 +195,6 @@ public class FxController {
                 break;
         }
     }
-
 
 
     public void updateState() {

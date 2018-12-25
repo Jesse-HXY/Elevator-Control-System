@@ -31,6 +31,7 @@ public class DoorOpen implements State {
             elevatorController.setCurrentState(elevatorController.getDoorBlocked());
         }
         else {
+            elevatorController.setNotice("Door closed.");
             elevatorController.doorClosed();
             elevatorController.setCurrentState(elevatorController.getDoorClose());
         }

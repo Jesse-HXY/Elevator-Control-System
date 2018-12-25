@@ -17,7 +17,8 @@ public class MovingDown implements State {
 
     @Override
     public void moving() {
-        /*elevatorController.setNotice("Moving");
+        elevatorController.setNotice("Moving down");
+        /*
         int listSize = elevatorController.getDownList().size() - 1;
         int aimFloorNum = elevatorController.getDownList().get(listSize);
         int tempFloorNum = elevatorController.getCurrentFloorNum();
@@ -36,7 +37,6 @@ public class MovingDown implements State {
             elevatorController.getDownList().remove(listSize);
             elevatorController.setCurrentState(elevatorController.getStop());
         }
-        //elevatorController.setNotice("arrived");
 
     }
 

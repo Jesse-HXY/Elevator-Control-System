@@ -16,18 +16,18 @@ public class Stop implements State {
 
     @Override
     public void moving() {
-        elevatorController.setNotice("open door first");
+
     }
 
     @Override
     public void openDoor() {
-        elevatorController.setNotice("Door already close");
+        elevatorController.doorOpen();
         elevatorController.setCurrentState(elevatorController.getDoorOpen());
     }
 
     @Override
     public void closeDoor() {
-        elevatorController.setNotice("Door open");
+        elevatorController.setNotice("Moving");
     }
 
     @Override

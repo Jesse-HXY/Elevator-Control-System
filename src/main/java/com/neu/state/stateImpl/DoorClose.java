@@ -31,7 +31,6 @@ public class DoorClose implements State {
                     elevatorController.setCurrentState(elevatorController.getMovingDown());
                 }
             }
-            elevatorController.setNotice("Moving");
         }
     }
 

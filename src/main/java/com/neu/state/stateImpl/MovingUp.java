@@ -17,6 +17,7 @@ public class MovingUp implements State {
 
     @Override
     public void moving() {
+        elevatorController.setNotice("Moving up");
         /*elevatorController.setNotice("Moving");
         int tempFloorNum = elevatorController.getCurrentFloorNum();
         int aimFloorNum = elevatorController.getUpList().get(0);
