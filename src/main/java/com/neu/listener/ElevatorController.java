@@ -47,7 +47,6 @@ public class ElevatorController implements DoorSensorListener, ElevatorPanelList
 
     public boolean moving(){
         currentState.moving();
-        currentGap = -1;
         return (currentFloorNum != aimFloorNum);
     }
 

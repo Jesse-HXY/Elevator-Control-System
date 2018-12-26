@@ -85,15 +85,22 @@ public class FxController {
         new Thread(() -> {
             while (elevatorController.getCurrentFloorNum() != elevatorController.CalcualateAimFloorNum() && elevatorController.getCurrentState() != elevatorController.getStop()) {
                 try {
-                    System.out.println(elevatorController.getCurrentGap());
-                    elevatorController.movinginGap();
+                    //System.out.println(elevatorController.getCurrentGap());
                     Thread.sleep(1000);
-                    System.out.println(elevatorController.getCurrentGap());
+                    //System.out.println(elevatorController.getCurrentGap());
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                elevatorController.moving();
                 Platform.runLater(() -> {
+                    elevatorController.movinginGap();
+                    Platform.runLater(() ->  updateState());
+                    elevatorController.moving();
+                    elevatorController.setCurrentGap(-1);
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                     updateState();
                     setNotice();
                     setColorBack();
@@ -200,92 +207,95 @@ public class FxController {
 
     public void updateState() {
         int floorNum = elevatorController.getCurrentFloorNum();
+        int gapNum = elevatorController.getCurrentGap();
         String doorState = elevatorController.getDoorState();
-        switch (floorNum) {
-            case 1:
-                oneFloor.setText("*****");
-                twoFloor.setText("");
-                threeFloor.setText("");
-                fourFloor.setText("");
-                fiveFloor.setText("");
-                sixFloor.setText("");
-                oneDoor.setText(doorState);
-                twoDoor.setText("");
-                threeDoor.setText("");
-                fourDoor.setText("");
-                fiveDoor.setText("");
-                sixDoor.setText("");
-                break;
-            case 2:
-                oneFloor.setText("");
-                twoFloor.setText("*****");
-                threeFloor.setText("");
-                fourFloor.setText("");
-                fiveFloor.setText("");
-                sixFloor.setText("");
-                oneDoor.setText("");
-                twoDoor.setText(doorState);
-                threeDoor.setText("");
-                fourDoor.setText("");
-                fiveDoor.setText("");
-                sixDoor.setText("");
-                break;
-            case 3:
-                oneFloor.setText("");
-                twoFloor.setText("");
-                threeFloor.setText("*****");
-                fourFloor.setText("");
-                fiveFloor.setText("");
-                sixFloor.setText("");
-                oneDoor.setText("");
-                twoDoor.setText("");
-                threeDoor.setText(doorState);
-                fourDoor.setText("");
-                fiveDoor.setText("");
-                sixDoor.setText("");
-                break;
-            case 4:
-                oneFloor.setText("");
-                twoFloor.setText("");
-                threeFloor.setText("");
-                fourFloor.setText("*****");
-                fiveFloor.setText("");
-                sixFloor.setText("");
-                oneDoor.setText("");
-                twoDoor.setText("");
-                threeDoor.setText("");
-                fourDoor.setText(doorState);
-                fiveDoor.setText("");
-                sixDoor.setText("");
-                break;
-            case 5:
-                oneFloor.setText("");
-                twoFloor.setText("");
-                threeFloor.setText("");
-                fourFloor.setText("");
-                fiveFloor.setText("*****");
-                sixFloor.setText("");
-                oneDoor.setText("");
-                twoDoor.setText("");
-                threeDoor.setText("");
-                fourDoor.setText("");
-                fiveDoor.setText(doorState);
-                sixDoor.setText("");
-                break;
-            case 6:
-                oneFloor.setText("");
-                twoFloor.setText("");
-                threeFloor.setText("");
-                fourFloor.setText("");
-                fiveFloor.setText("");
-                sixFloor.setText("*****");
-                oneDoor.setText("");
-                twoDoor.setText("");
-                threeDoor.setText("");
-                fourDoor.setText("");
-                fiveDoor.setText("");
-                sixDoor.setText(doorState);
-                break;
+        System.out.println(gapNum);
+        if(gapNum != -1){
+            switch (gapNum) {
+                case 1:
+                    oneFloor.setText("");
+                    oneGap.setText("*****");
+                    twoFloor.setText("");
+                    oneDoor.setText(doorState);
+                    twoDoor.setText(doorState);
+                    break;
+                case 2:
+                    twoFloor.setText("");
+                    twoGap.setText("*****");
+                    threeFloor.setText("");
+                    twoDoor.setText(doorState);
+                    threeDoor.setText(doorState);
+                    break;
+                case 3:
+                    threeFloor.setText("");
+                    threeGap.setText("*****");
+                    fourFloor.setText("");
+                    threeDoor.setText(doorState);
+                    fourDoor.setText(doorState);
+                    break;
+                case 4:
+                    fourFloor.setText("");
+                    fourGap.setText("*****");
+                    fiveFloor.setText("");
+                    fourDoor.setText(doorState);
+                    fiveDoor.setText(doorState);
+                    break;
+                case 5:
+                    fiveFloor.setText("");
+                    fourGap.setText("*****");
+                    sixFloor.setText("");
+                    fiveDoor.setText(doorState);
+                    sixDoor.setText(doorState);
+                    break;
+            }
+        }else {
+            switch (floorNum) {
+                case 1:
+                    oneFloor.setText("*****");
+                    oneGap.setText("");
+                    oneDoor.setText(doorState);
+                    twoDoor.setText("");
+                    break;
+                case 2:
+                    oneGap.setText("");
+                    twoFloor.setText("*****");
+                    twoGap.setText("");
+                    oneDoor.setText("");
+                    twoDoor.setText(doorState);
+                    threeDoor.setText("");
+                    break;
+                case 3:
+                    twoGap.setText("");
+                    threeFloor.setText("*****");
+                    threeGap.setText("");
+                    twoDoor.setText("");
+                    threeDoor.setText(doorState);
+                    fourDoor.setText("");
+                    break;
+                case 4:
+                    threeGap.setText("");
+                    fourFloor.setText("*****");
+                    fourGap.setText("");
+                    threeDoor.setText("");
+                    fourDoor.setText(doorState);
+                    fiveDoor.setText("");
+                    break;
+                case 5:
+                    fourGap.setText("");
+                    fiveFloor.setText("*****");
+                    fiveGap.setText("");
+                    fourDoor.setText("");
+                    fiveDoor.setText(doorState);
+                    sixDoor.setText("");
+                    break;
+                case 6:
+                    fiveGap.setText("");
+                    sixFloor.setText("*****");
+                    fiveDoor.setText("");
+                    sixDoor.setText(doorState);
+                    break;
+            }
+
         }
     }
 }
