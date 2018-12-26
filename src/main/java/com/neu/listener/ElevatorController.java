@@ -27,27 +27,43 @@ public class ElevatorController implements DoorSensorListener, ElevatorPanelList
     private String notice;
     private String doorState;
 
+    /**
+     * press the open button
+     */
     public void openButtonPressed() {
         currentState.openDoor();
     }
 
+    /**
+     * press the close open
+     */
     public void closedButtonPressed() {
         CalcualateAimFloorNum();
         currentState.closeDoor();
         currentState.prepare();
     }
 
+    /**
+     * the elevator go up or go down 1 floor
+     * @return whether the elevator is at the aim floor
+     */
     public boolean moving() {
         currentState.moving();
         return (currentFloorNum != aimFloorNum);
     }
 
+    /**
+     * press the block button
+     */
     public void blockButtonPressed() {
         if (currentState == idle || currentState == doorClose || currentState == doorOpen) {
             currentState = doorBlocked;
         }
     }
 
+    /**
+     * whether the elevator is at the floor rather than the gap
+     */
     public void floorReached() {
         if ((int) currentFloorNum == currentFloorNum) {
             isReached = true;
@@ -69,6 +85,10 @@ public class ElevatorController implements DoorSensorListener, ElevatorPanelList
         doorState = "blocked";
     }
 
+    /**
+     * press the floor button
+     * @param floorNum the number of pressed button
+     */
     public void floorButtonPressed(double floorNum) {
         if (floorNum > currentFloorNum) {
             upList.add(floorNum);
@@ -177,6 +197,10 @@ public class ElevatorController implements DoorSensorListener, ElevatorPanelList
         isReached = reached;
     }
 
+    /**
+     * calculate the aim floor if the elevator is moving up, it's the first of the upList, if the elevator is moving down, it's the last of the downList,
+     * @return the aim floor
+     */
     public double CalcualateAimFloorNum() {
         if (isUp && upList.size() != 0) {
             aimFloorNum = upList.get(0);

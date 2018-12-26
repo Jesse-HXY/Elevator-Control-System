@@ -11,12 +11,14 @@ public class DoorClose implements State {
 
     @Override
     public void prepare() {
+        //there is no aim floor in the both upList and downList
         if(elevatorController.getDownList().size() == 0 && elevatorController.getUpList().size() == 0){
             elevatorController.setCurrentState(elevatorController.getIdle());
             elevatorController.setNotice("Idle");
         }
         else {
             if (elevatorController.isUp()) {
+                //there is no aim floor in upList
                 if (elevatorController.getUpList().size() == 0) {
                     elevatorController.setCurrentState(elevatorController.getMovingDown());
                     elevatorController.setUp(false);
@@ -24,6 +26,7 @@ public class DoorClose implements State {
                     elevatorController.setCurrentState(elevatorController.getMovingUp());
                 }
             } else {
+                //there is no aim floor in downList
                 if (elevatorController.getDownList().size() == 0) {
                     elevatorController.setCurrentState(elevatorController.getMovingUp());
                     elevatorController.setUp(true);

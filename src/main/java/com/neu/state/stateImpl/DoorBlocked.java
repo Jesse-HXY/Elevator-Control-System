@@ -12,7 +12,6 @@ public class DoorBlocked implements State {
 
     @Override
     public void prepare() {
-
     }
 
     @Override
