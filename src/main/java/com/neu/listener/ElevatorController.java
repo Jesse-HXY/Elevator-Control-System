@@ -22,6 +22,7 @@ public class ElevatorController implements DoorSensorListener, ElevatorPanelList
     private List<Integer> upList;
     private List<Integer> downList;
     private int aimFloorNum;
+    private int currentGap;
     private boolean isUp;
     private String notice;
     private String doorState;
@@ -36,13 +37,30 @@ public class ElevatorController implements DoorSensorListener, ElevatorPanelList
         currentState.prepare();
     }
 
+    public void movinginGap(){
+        if(isUp){
+            currentGap = currentFloorNum;
+        }else{
+            currentGap = currentFloorNum - 1;
+        }
+    }
+
     public boolean moving(){
         currentState.moving();
+        currentGap = -1;
         return (currentFloorNum != aimFloorNum);
     }
 
     public void floorReached() {
 
+    }
+
+    public int getCurrentGap() {
+        return currentGap;
+    }
+
+    public void setCurrentGap(int currentGap) {
+        this.currentGap = currentGap;
     }
 
     public void doorOpen() {
@@ -74,6 +92,7 @@ public class ElevatorController implements DoorSensorListener, ElevatorPanelList
     private ElevatorController() {
         this.currentFloorNum = 1;
         this.aimFloorNum = 1;
+        this.currentGap = -1;
         this.doorState = "closed";
         this.isReached = false;
         this.isUp = true;

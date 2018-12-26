@@ -83,22 +83,23 @@ public class FxController {
     public void closeButtonAction(ActionEvent event) {
         elevatorPanel.getListeners().get(0).closedButtonPressed();
         new Thread(() -> {
-            try {
-                while (elevatorController.getCurrentFloorNum() != elevatorController.CalcualateAimFloorNum()) {
-                    System.out.println(elevatorController.getCurrentFloorNum());
-
+            while (elevatorController.getCurrentFloorNum() != elevatorController.CalcualateAimFloorNum() && elevatorController.getCurrentState() != elevatorController.getStop()) {
+                try {
+                    System.out.println(elevatorController.getCurrentGap());
+                    elevatorController.movinginGap();
                     Thread.sleep(1000);
-                    elevatorController.moving();
-                    Platform.runLater(() -> {
-                        updateState();
-                        setNotice();
-                        setColorBack();
-                    });
+                    System.out.println(elevatorController.getCurrentGap());
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
-                Platform.runLater(() -> notice.setText("Arrived"));
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+                elevatorController.moving();
+                Platform.runLater(() -> {
+                    updateState();
+                    setNotice();
+                    setColorBack();
+                });
             }
+            Platform.runLater(() -> notice.setText("Arrived"));
         }).start();
 
     }
