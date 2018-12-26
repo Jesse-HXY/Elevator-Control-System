@@ -90,6 +90,7 @@ public class FxController {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
+                disableButton();
                 elevatorController.moving();
                 Platform.runLater(() -> {
                     updateState();
@@ -97,17 +98,24 @@ public class FxController {
                     setColorBack();
                 });
             }
+            ableButton();
             Platform.runLater(() -> notice.setText("Arrived"));
         }).start();
 
     }
 
+
     @FXML
     public void oneButtonAction(ActionEvent event) {
+        if(elevatorController.getCurrentState()==elevatorController.getIdle()){
+            notice.setText("please open the door first.");
+            return;
+        }
         if (elevatorController.getCurrentFloorNum() == 1.0) {
             notice.setText("you are already in floor 1");
             return;
         }
+
         oneButton.setStyle("-fx-border-color:red");
         notice.setText("Floor one selected");
         elevatorPanel.getListeners().get(0).floorButtonPressed(1);
@@ -115,6 +123,10 @@ public class FxController {
 
     @FXML
     public void twoButtonAction(ActionEvent event) {
+        if(elevatorController.getCurrentState()==elevatorController.getIdle()){
+            notice.setText("please open the door first.");
+            return;
+        }
         if (elevatorController.getCurrentFloorNum() == 2.0) {
             notice.setText("you are already in floor 2");
             return;
@@ -126,6 +138,10 @@ public class FxController {
 
     @FXML
     public void threeButtonAction(ActionEvent event) {
+        if(elevatorController.getCurrentState()==elevatorController.getIdle()){
+            notice.setText("please open the door first.");
+            return;
+        }
         if (elevatorController.getCurrentFloorNum() == 3.0) {
             notice.setText("you are already in floor 3");
             return;
@@ -137,6 +153,10 @@ public class FxController {
 
     @FXML
     public void fourButtonAction(ActionEvent event) {
+        if(elevatorController.getCurrentState()==elevatorController.getIdle()){
+            notice.setText("please open the door first.");
+            return;
+        }
         if (elevatorController.getCurrentFloorNum() == 4.0) {
             notice.setText("you are already in floor 4");
             return;
@@ -148,6 +168,10 @@ public class FxController {
 
     @FXML
     public void fiveButtonAction(ActionEvent event) {
+        if(elevatorController.getCurrentState()==elevatorController.getIdle()){
+            notice.setText("please open the door first.");
+            return;
+        }
         if (elevatorController.getCurrentFloorNum() == 5.0) {
             notice.setText("you are already in floor 5");
             return;
@@ -159,6 +183,10 @@ public class FxController {
 
     @FXML
     public void sixButtonAction(ActionEvent event) {
+        if(elevatorController.getCurrentState()==elevatorController.getIdle()){
+            notice.setText("please open the door first.");
+            return;
+        }
         if (elevatorController.getCurrentFloorNum() == 6.0) {
             notice.setText("you are already in floor 6");
             return;
@@ -166,6 +194,29 @@ public class FxController {
         sixButton.setStyle("-fx-border-color:red");
         notice.setText("Floor six selected");
         elevatorController.floorButtonPressed(6.0);
+    }
+
+
+    public void disableButton() {
+            oneButton.setDisable(true);
+            twoButton.setDisable(true);
+            threeButton.setDisable(true);
+            fourButton.setDisable(true);
+            fiveButton.setDisable(true);
+            sixButton.setDisable(true);
+            openButton.setDisable(true);
+            closeButton.setDisable(true);
+    }
+
+    public void ableButton(){
+        oneButton.setDisable(false);
+        twoButton.setDisable(false);
+        threeButton.setDisable(false);
+        fourButton.setDisable(false);
+        fiveButton.setDisable(false);
+        sixButton.setDisable(false);
+        openButton.setDisable(false);
+        closeButton.setDisable(false);
     }
 
 
