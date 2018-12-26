@@ -51,7 +51,11 @@ public class ElevatorController implements DoorSensorListener, ElevatorPanelList
     }
 
     public void floorReached() {
-
+        if((int)currentFloorNum == currentFloorNum){
+            isReached = true;
+        }else{
+            isReached = false;
+        }
     }
 
     public int getCurrentGap() {
@@ -246,6 +250,8 @@ public class ElevatorController implements DoorSensorListener, ElevatorPanelList
     public void setUp(boolean up) {
         isUp = up;
     }
+
+
 
 
 }

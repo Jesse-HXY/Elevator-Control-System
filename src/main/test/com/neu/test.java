@@ -71,4 +71,15 @@ public class test {
         assertEquals(false, elevatorController.moving());
     }
 
+    @Test
+    public void testReached(){
+        ElevatorController elevatorController = ElevatorController.getInstance();
+        elevatorController.setCurrentFloorNum(2);
+        elevatorController.floorReached();
+        assertEquals(true, elevatorController.isReached());
+        elevatorController.setCurrentFloorNum(2.5);
+        elevatorController.floorReached();
+        assertEquals(false, elevatorController.isReached());
+    }
+
 }
