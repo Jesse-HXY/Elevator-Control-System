@@ -10,8 +10,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
-import static java.lang.Thread.sleep;
-
 
 public class FxController {
     @FXML
@@ -86,9 +84,11 @@ public class FxController {
         elevatorPanel.getListeners().get(0).closedButtonPressed();
         new Thread(() -> {
             try {
-                while (elevatorController.moving()) {
+                while (elevatorController.getCurrentFloorNum() != elevatorController.CalcualateAimFloorNum()) {
                     System.out.println(elevatorController.getCurrentFloorNum());
+
                     Thread.sleep(1000);
+                    elevatorController.moving();
                     Platform.runLater(() -> {
                         updateState();
                         setNotice();

@@ -193,9 +193,9 @@ public class ElevatorController implements DoorSensorListener, ElevatorPanelList
     }
 
     public int CalcualateAimFloorNum() {
-        if(isUp){
+        if(isUp && upList.size() != 0){
             aimFloorNum = upList.get(0);
-        }else{
+        }else if(!isUp && downList.size() != 0){
             aimFloorNum = downList.get(downList.size() - 1);
         }
         return aimFloorNum;
