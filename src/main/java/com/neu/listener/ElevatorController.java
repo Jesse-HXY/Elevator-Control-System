@@ -37,34 +37,25 @@ public class ElevatorController implements DoorSensorListener, ElevatorPanelList
         currentState.prepare();
     }
 
-//    public void movinginGap(){
-//        if(isUp){
-//            currentGap = currentFloorNum;
-//        }else{
-//            currentGap = currentFloorNum - 1;
-//        }
-//    }
-
-    public boolean moving(){
+    public boolean moving() {
         currentState.moving();
         return (currentFloorNum != aimFloorNum);
     }
 
+    public void blockButtonPressed() {
+        if (currentState == idle || currentState == doorClose || currentState == doorOpen) {
+            currentState = doorBlocked;
+        }
+    }
+
     public void floorReached() {
-        if((int)currentFloorNum == currentFloorNum){
+        if ((int) currentFloorNum == currentFloorNum) {
             isReached = true;
-        }else{
+        } else {
             isReached = false;
         }
     }
 
-    public int getCurrentGap() {
-        return currentGap;
-    }
-
-    public void setCurrentGap(int currentGap) {
-        this.currentGap = currentGap;
-    }
 
     public void doorOpen() {
         doorState = "open";
@@ -76,10 +67,6 @@ public class ElevatorController implements DoorSensorListener, ElevatorPanelList
 
     public void doorBlocked() {
         doorState = "blocked";
-    }
-
-    public void print(){
-        currentState.printCurrentState();
     }
 
     public void floorButtonPressed(double floorNum) {
@@ -122,9 +109,6 @@ public class ElevatorController implements DoorSensorListener, ElevatorPanelList
         return doorState;
     }
 
-    public void setDoorState(String doorState) {
-        this.doorState = doorState;
-    }
 
     public String getNotice() {
         return notice;
@@ -142,57 +126,36 @@ public class ElevatorController implements DoorSensorListener, ElevatorPanelList
         return doorBlocked;
     }
 
-    public void setDoorBlocked(State doorBlocked) {
-        this.doorBlocked = doorBlocked;
-    }
 
     public State getDoorClose() {
         return doorClose;
     }
 
-    public void setDoorClose(State doorClose) {
-        this.doorClose = doorClose;
-    }
 
     public State getDoorOpen() {
         return doorOpen;
     }
 
-    public void setDoorOpen(State doorOpen) {
-        this.doorOpen = doorOpen;
-    }
 
     public State getIdle() {
         return idle;
     }
 
-    public void setIdle(State idle) {
-        this.idle = idle;
-    }
 
     public State getMovingDown() {
         return movingDown;
     }
 
-    public void setMovingDown(State movingDown) {
-        this.movingDown = movingDown;
-    }
 
     public State getMovingUp() {
         return movingUp;
     }
 
-    public void setMovingUp(State movingUp) {
-        this.movingUp = movingUp;
-    }
 
     public State getStop() {
         return stop;
     }
 
-    public void setStop(State stop) {
-        this.stop = stop;
-    }
 
     public State getCurrentState() {
         return currentState;
@@ -215,32 +178,20 @@ public class ElevatorController implements DoorSensorListener, ElevatorPanelList
     }
 
     public double CalcualateAimFloorNum() {
-        if(isUp && upList.size() != 0){
+        if (isUp && upList.size() != 0) {
             aimFloorNum = upList.get(0);
-        }else if(!isUp && downList.size() != 0){
+        } else if (!isUp && downList.size() != 0) {
             aimFloorNum = downList.get(downList.size() - 1);
         }
         return aimFloorNum;
-    }
-
-    public void setAimFloorNum(int aimFloorNum) {
-        this.aimFloorNum = aimFloorNum;
     }
 
     public List<Double> getUpList() {
         return upList;
     }
 
-    public void setUpList(List<Double> upList) {
-        this.upList = upList;
-    }
-
     public List<Double> getDownList() {
         return downList;
-    }
-
-    public void setDownList(List<Double> downList) {
-        this.downList = downList;
     }
 
     public boolean isUp() {
@@ -250,8 +201,6 @@ public class ElevatorController implements DoorSensorListener, ElevatorPanelList
     public void setUp(boolean up) {
         isUp = up;
     }
-
-
 
 
 }

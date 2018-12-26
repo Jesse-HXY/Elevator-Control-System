@@ -38,8 +38,4 @@ public class MovingDown implements State {
         elevatorController.setNotice("Door already close");
     }
 
-    @Override
-    public void printCurrentState() {
-        System.out.println("MovingDown");
-    }
 }

@@ -1,9 +1,7 @@
 package com.neu.fxController;
 
 import com.neu.listener.ElevatorController;
-import com.neu.sensor.DoorSensor;
 import com.neu.sensor.ElevatorPanel;
-import com.neu.sensor.FloorSensor;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,6 +10,8 @@ import javafx.scene.control.Label;
 
 
 public class FxController {
+    @FXML
+    private Button blockButton;
     @FXML
     private Button openButton;
     @FXML
@@ -65,23 +65,37 @@ public class FxController {
     @FXML
     private Label sixDoor;
 
-    private DoorSensor doorSensor = new DoorSensor();
     private ElevatorPanel elevatorPanel = new ElevatorPanel();
-    private FloorSensor floorSensor = new FloorSensor();
     private ElevatorController elevatorController = ((ElevatorController) (elevatorPanel.getListeners().get(0)));
+
+    @FXML
+    public void blockButtonAction(ActionEvent event) {
+        elevatorController.blockButtonPressed();
+    }
 
 
     @FXML
     public void openButtonAction(ActionEvent event) {
-        elevatorPanel.getListeners().get(0).openButtonPressed();
-        elevatorController.print();
+        if (elevatorController.getCurrentState() == elevatorController.getDoorBlocked()) {
+            doBlock();
+            return;
+        }
+        elevatorController.openButtonPressed();
         setNotice();
         updateState();
     }
 
     @FXML
     public void closeButtonAction(ActionEvent event) {
-        elevatorPanel.getListeners().get(0).closedButtonPressed();
+        if (elevatorController.getCurrentState() == elevatorController.getDoorBlocked()) {
+            doBlock();
+            return;
+        }
+        if (elevatorController.getCurrentState() == elevatorController.getStop()) {
+            notice.setText("Arrived, Please open door");
+            return;
+        }
+        elevatorController.closedButtonPressed();
         new Thread(() -> {
             while (elevatorController.getCurrentFloorNum() != elevatorController.CalcualateAimFloorNum()
                     && elevatorController.getCurrentState() != elevatorController.getStop()) {
@@ -107,7 +121,11 @@ public class FxController {
 
     @FXML
     public void oneButtonAction(ActionEvent event) {
-        if(elevatorController.getCurrentState()==elevatorController.getIdle()){
+        if (elevatorController.getCurrentState() == elevatorController.getDoorBlocked()) {
+            doBlock();
+            return;
+        }
+        if (elevatorController.getCurrentState() == elevatorController.getIdle()) {
             notice.setText("please open the door first.");
             return;
         }
@@ -123,7 +141,11 @@ public class FxController {
 
     @FXML
     public void twoButtonAction(ActionEvent event) {
-        if(elevatorController.getCurrentState()==elevatorController.getIdle()){
+        if (elevatorController.getCurrentState() == elevatorController.getDoorBlocked()) {
+            doBlock();
+            return;
+        }
+        if (elevatorController.getCurrentState() == elevatorController.getIdle()) {
             notice.setText("please open the door first.");
             return;
         }
@@ -138,7 +160,11 @@ public class FxController {
 
     @FXML
     public void threeButtonAction(ActionEvent event) {
-        if(elevatorController.getCurrentState()==elevatorController.getIdle()){
+        if (elevatorController.getCurrentState() == elevatorController.getDoorBlocked()) {
+            doBlock();
+            return;
+        }
+        if (elevatorController.getCurrentState() == elevatorController.getIdle()) {
             notice.setText("please open the door first.");
             return;
         }
@@ -153,7 +179,11 @@ public class FxController {
 
     @FXML
     public void fourButtonAction(ActionEvent event) {
-        if(elevatorController.getCurrentState()==elevatorController.getIdle()){
+        if (elevatorController.getCurrentState() == elevatorController.getDoorBlocked()) {
+            doBlock();
+            return;
+        }
+        if (elevatorController.getCurrentState() == elevatorController.getIdle()) {
             notice.setText("please open the door first.");
             return;
         }
@@ -168,7 +198,11 @@ public class FxController {
 
     @FXML
     public void fiveButtonAction(ActionEvent event) {
-        if(elevatorController.getCurrentState()==elevatorController.getIdle()){
+        if (elevatorController.getCurrentState() == elevatorController.getDoorBlocked()) {
+            doBlock();
+            return;
+        }
+        if (elevatorController.getCurrentState() == elevatorController.getIdle()) {
             notice.setText("please open the door first.");
             return;
         }
@@ -183,7 +217,11 @@ public class FxController {
 
     @FXML
     public void sixButtonAction(ActionEvent event) {
-        if(elevatorController.getCurrentState()==elevatorController.getIdle()){
+        if (elevatorController.getCurrentState() == elevatorController.getDoorBlocked()) {
+            doBlock();
+            return;
+        }
+        if (elevatorController.getCurrentState() == elevatorController.getIdle()) {
             notice.setText("please open the door first.");
             return;
         }
@@ -198,17 +236,18 @@ public class FxController {
 
 
     public void disableButton() {
-            oneButton.setDisable(true);
-            twoButton.setDisable(true);
-            threeButton.setDisable(true);
-            fourButton.setDisable(true);
-            fiveButton.setDisable(true);
-            sixButton.setDisable(true);
-            openButton.setDisable(true);
-            closeButton.setDisable(true);
+        oneButton.setDisable(true);
+        twoButton.setDisable(true);
+        threeButton.setDisable(true);
+        fourButton.setDisable(true);
+        fiveButton.setDisable(true);
+        sixButton.setDisable(true);
+        openButton.setDisable(true);
+        closeButton.setDisable(true);
+        blockButton.setDisable(true);
     }
 
-    public void ableButton(){
+    public void ableButton() {
         oneButton.setDisable(false);
         twoButton.setDisable(false);
         threeButton.setDisable(false);
@@ -217,8 +256,26 @@ public class FxController {
         sixButton.setDisable(false);
         openButton.setDisable(false);
         closeButton.setDisable(false);
+        blockButton.setDisable(false);
+
     }
 
+    public void doBlock() {
+        new Thread(() -> {
+            Platform.runLater(() -> {
+                disableButton();
+                notice.setText("Blocked, please wait 5s");
+            });
+            try {
+                Thread.sleep(5000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            ableButton();
+            elevatorController.setCurrentState(elevatorController.getIdle());
+        }).start();
+        return;
+    }
 
     public void setNotice() {
         notice.setText(elevatorController.getNotice());

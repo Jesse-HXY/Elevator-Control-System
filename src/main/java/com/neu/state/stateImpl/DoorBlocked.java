@@ -17,7 +17,7 @@ public class DoorBlocked implements State {
 
     @Override
     public void moving() {
-        elevatorController.setNotice("Something is blocking.");
+
     }
 
     @Override
@@ -30,8 +30,4 @@ public class DoorBlocked implements State {
         elevatorController.setNotice("Something is blocking.");
     }
 
-    @Override
-    public void printCurrentState() {
-        System.out.println("DoorBlocked");
-    }
 }

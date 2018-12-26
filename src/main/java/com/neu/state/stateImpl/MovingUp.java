@@ -5,7 +5,8 @@ import com.neu.state.State;
 
 public class MovingUp implements State {
     private ElevatorController elevatorController;
-    public MovingUp(ElevatorController elevatorController){
+
+    public MovingUp(ElevatorController elevatorController) {
         this.elevatorController = elevatorController;
     }
 
@@ -21,7 +22,7 @@ public class MovingUp implements State {
         double tempFloorNum = elevatorController.getCurrentFloorNum() + 0.5;
         elevatorController.setCurrentFloorNum(tempFloorNum);
         double aimFloorNum = elevatorController.getUpList().get(0);
-        if(tempFloorNum == aimFloorNum){
+        if (tempFloorNum == aimFloorNum) {
             elevatorController.getUpList().remove(0);
             elevatorController.setCurrentState(elevatorController.getStop());
         }
@@ -37,8 +38,4 @@ public class MovingUp implements State {
         elevatorController.setNotice("Door already close");
     }
 
-    @Override
-    public void printCurrentState() {
-        System.out.println("MovingUp");
-    }
 }

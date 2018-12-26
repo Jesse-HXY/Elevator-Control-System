@@ -30,8 +30,4 @@ public class Stop implements State {
         elevatorController.setNotice("Moving");
     }
 
-    @Override
-    public void printCurrentState() {
-        System.out.println("Stop");
-    }
 }

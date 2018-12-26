@@ -37,8 +37,4 @@ public class DoorOpen implements State {
         }
     }
 
-    @Override
-    public void printCurrentState() {
-        System.out.println("DoorOpen");
-    }
 }
