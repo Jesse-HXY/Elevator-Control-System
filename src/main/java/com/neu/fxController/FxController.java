@@ -83,24 +83,15 @@ public class FxController {
     public void closeButtonAction(ActionEvent event) {
         elevatorPanel.getListeners().get(0).closedButtonPressed();
         new Thread(() -> {
-            while (elevatorController.getCurrentFloorNum() != elevatorController.CalcualateAimFloorNum() && elevatorController.getCurrentState() != elevatorController.getStop()) {
+            while (elevatorController.getCurrentFloorNum() != elevatorController.CalcualateAimFloorNum()
+                    && elevatorController.getCurrentState() != elevatorController.getStop()) {
                 try {
-                    //System.out.println(elevatorController.getCurrentGap());
                     Thread.sleep(1000);
-                    //System.out.println(elevatorController.getCurrentGap());
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
+                elevatorController.moving();
                 Platform.runLater(() -> {
-                    elevatorController.movinginGap();
-                    Platform.runLater(() ->  updateState());
-                    elevatorController.moving();
-                    elevatorController.setCurrentGap(-1);
-                    try {
-                        Thread.sleep(1000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
                     updateState();
                     setNotice();
                     setColorBack();
@@ -113,7 +104,7 @@ public class FxController {
 
     @FXML
     public void oneButtonAction(ActionEvent event) {
-        if (elevatorController.getCurrentFloorNum() == 1) {
+        if (elevatorController.getCurrentFloorNum() == 1.0) {
             notice.setText("you are already in floor 1");
             return;
         }
@@ -124,7 +115,7 @@ public class FxController {
 
     @FXML
     public void twoButtonAction(ActionEvent event) {
-        if (elevatorController.getCurrentFloorNum() == 2) {
+        if (elevatorController.getCurrentFloorNum() == 2.0) {
             notice.setText("you are already in floor 2");
             return;
         }
@@ -135,7 +126,7 @@ public class FxController {
 
     @FXML
     public void threeButtonAction(ActionEvent event) {
-        if (elevatorController.getCurrentFloorNum() == 3) {
+        if (elevatorController.getCurrentFloorNum() == 3.0) {
             notice.setText("you are already in floor 3");
             return;
         }
@@ -146,7 +137,7 @@ public class FxController {
 
     @FXML
     public void fourButtonAction(ActionEvent event) {
-        if (elevatorController.getCurrentFloorNum() == 4) {
+        if (elevatorController.getCurrentFloorNum() == 4.0) {
             notice.setText("you are already in floor 4");
             return;
         }
@@ -157,48 +148,50 @@ public class FxController {
 
     @FXML
     public void fiveButtonAction(ActionEvent event) {
-        if (elevatorController.getCurrentFloorNum() == 5) {
+        if (elevatorController.getCurrentFloorNum() == 5.0) {
             notice.setText("you are already in floor 5");
             return;
         }
         fiveButton.setStyle("-fx-border-color:red");
         notice.setText("Floor five selected");
-        elevatorController.floorButtonPressed(5);
+        elevatorController.floorButtonPressed(5.0);
     }
 
     @FXML
     public void sixButtonAction(ActionEvent event) {
-        if (elevatorController.getCurrentFloorNum() == 6) {
+        if (elevatorController.getCurrentFloorNum() == 6.0) {
             notice.setText("you are already in floor 6");
             return;
         }
         sixButton.setStyle("-fx-border-color:red");
         notice.setText("Floor six selected");
-        elevatorController.floorButtonPressed(6);
+        elevatorController.floorButtonPressed(6.0);
     }
+
 
     public void setNotice() {
         notice.setText(elevatorController.getNotice());
     }
 
     public void setColorBack() {
-        switch (elevatorController.getCurrentFloorNum()) {
-            case 1:
+        double floorNum = elevatorController.getCurrentFloorNum();
+        switch (String.valueOf(floorNum)) {
+            case "1.0":
                 oneButton.setStyle("-fx-border-color:null");
                 break;
-            case 2:
+            case "2.0":
                 twoButton.setStyle("-fx-border-color:null");
                 break;
-            case 3:
+            case "3.0":
                 threeButton.setStyle("-fx-border-color:null");
                 break;
-            case 4:
+            case "4.0":
                 fourButton.setStyle("-fx-border-color:null");
                 break;
-            case 5:
+            case "5.0":
                 fiveButton.setStyle("-fx-border-color:null");
                 break;
-            case 6:
+            case "6.0":
                 sixButton.setStyle("-fx-border-color:null");
                 break;
         }
@@ -206,96 +199,82 @@ public class FxController {
 
 
     public void updateState() {
-        int floorNum = elevatorController.getCurrentFloorNum();
-        int gapNum = elevatorController.getCurrentGap();
+        double floorNum = elevatorController.getCurrentFloorNum();
         String doorState = elevatorController.getDoorState();
-        System.out.println(gapNum);
-        if(gapNum != -1){
-            switch (gapNum) {
-                case 1:
-                    oneFloor.setText("");
-                    oneGap.setText("*****");
-                    twoFloor.setText("");
-                    oneDoor.setText(doorState);
-                    twoDoor.setText(doorState);
-                    break;
-                case 2:
-                    twoFloor.setText("");
-                    twoGap.setText("*****");
-                    threeFloor.setText("");
-                    twoDoor.setText(doorState);
-                    threeDoor.setText(doorState);
-                    break;
-                case 3:
-                    threeFloor.setText("");
-                    threeGap.setText("*****");
-                    fourFloor.setText("");
-                    threeDoor.setText(doorState);
-                    fourDoor.setText(doorState);
-                    break;
-                case 4:
-                    fourFloor.setText("");
-                    fourGap.setText("*****");
-                    fiveFloor.setText("");
-                    fourDoor.setText(doorState);
-                    fiveDoor.setText(doorState);
-                    break;
-                case 5:
-                    fiveFloor.setText("");
-                    fourGap.setText("*****");
-                    sixFloor.setText("");
-                    fiveDoor.setText(doorState);
-                    sixDoor.setText(doorState);
-                    break;
-            }
-        }else {
-            switch (floorNum) {
-                case 1:
-                    oneFloor.setText("*****");
-                    oneGap.setText("");
-                    oneDoor.setText(doorState);
-                    twoDoor.setText("");
-                    break;
-                case 2:
-                    oneGap.setText("");
-                    twoFloor.setText("*****");
-                    twoGap.setText("");
-                    oneDoor.setText("");
-                    twoDoor.setText(doorState);
-                    threeDoor.setText("");
-                    break;
-                case 3:
-                    twoGap.setText("");
-                    threeFloor.setText("*****");
-                    threeGap.setText("");
-                    twoDoor.setText("");
-                    threeDoor.setText(doorState);
-                    fourDoor.setText("");
-                    break;
-                case 4:
-                    threeGap.setText("");
-                    fourFloor.setText("*****");
-                    fourGap.setText("");
-                    threeDoor.setText("");
-                    fourDoor.setText(doorState);
-                    fiveDoor.setText("");
-                    break;
-                case 5:
-                    fourGap.setText("");
-                    fiveFloor.setText("*****");
-                    fiveGap.setText("");
-                    fourDoor.setText("");
-                    fiveDoor.setText(doorState);
-                    sixDoor.setText("");
-                    break;
-                case 6:
-                    fiveGap.setText("");
-                    sixFloor.setText("*****");
-                    fiveDoor.setText("");
-                    sixDoor.setText(doorState);
-                    break;
-            }
-
+        switch (String.valueOf(floorNum)) {
+            case "1.0":
+                oneFloor.setText("*****");
+                twoFloor.setText("");
+                oneDoor.setText(doorState);
+                twoDoor.setText("");
+                oneGap.setText("");
+                break;
+            case "1.5":
+                oneFloor.setText("");
+                oneDoor.setText("");
+                oneGap.setText("*****");
+                twoFloor.setText("");
+                twoDoor.setText("");
+                break;
+            case "2.0":
+                twoFloor.setText("*****");
+                oneGap.setText("");
+                twoGap.setText("");
+                twoDoor.setText(doorState);
+                break;
+            case "2.5":
+                twoFloor.setText("");
+                twoDoor.setText("");
+                threeFloor.setText("");
+                threeDoor.setText("");
+                twoGap.setText("*****");
+                break;
+            case "3.0":
+                twoGap.setText("");
+                threeGap.setText("");
+                threeDoor.setText(doorState);
+                threeFloor.setText("*****");
+                break;
+            case "3.5":
+                fourFloor.setText("");
+                fourDoor.setText("");
+                threeFloor.setText("");
+                threeDoor.setText("");
+                threeGap.setText("*****");
+                break;
+            case "4.0":
+                fourGap.setText("");
+                threeGap.setText("");
+                fourDoor.setText(doorState);
+                fourFloor.setText("*****");
+                break;
+            case "4.5":
+                fourFloor.setText("");
+                fourDoor.setText("");
+                fiveFloor.setText("");
+                fiveDoor.setText("");
+                fourGap.setText("*****");
+                break;
+            case "5.0":
+                fourGap.setText("");
+                fiveGap.setText("");
+                fiveDoor.setText(doorState);
+                fiveFloor.setText("*****");
+                break;
+            case "5.5":
+                sixFloor.setText("");
+                sixDoor.setText("");
+                fiveFloor.setText("");
+                fiveDoor.setText("");
+                fiveGap.setText("*****");
+                break;
+            case "6.0":
+                fiveGap.setText("");
+                sixDoor.setText(doorState);
+                sixFloor.setText("*****");
+                break;
         }
+
     }
+
 }

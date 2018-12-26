@@ -1,7 +1,7 @@
 package com.neu.listener;
 
 public interface ElevatorPanelListener {
-    void floorButtonPressed(int floorNum);
+    void floorButtonPressed(double floorNum);
     void openButtonPressed();
     void closedButtonPressed();
 }

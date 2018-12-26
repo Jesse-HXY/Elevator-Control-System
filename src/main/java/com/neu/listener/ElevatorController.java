@@ -17,11 +17,11 @@ public class ElevatorController implements DoorSensorListener, ElevatorPanelList
     private State movingUp;
     private State stop;
     private State currentState;
-    private int currentFloorNum;
+    private double currentFloorNum;
     private boolean isReached;
-    private List<Integer> upList;
-    private List<Integer> downList;
-    private int aimFloorNum;
+    private List<Double> upList;
+    private List<Double> downList;
+    private double aimFloorNum;
     private int currentGap;
     private boolean isUp;
     private String notice;
@@ -37,13 +37,13 @@ public class ElevatorController implements DoorSensorListener, ElevatorPanelList
         currentState.prepare();
     }
 
-    public void movinginGap(){
-        if(isUp){
-            currentGap = currentFloorNum;
-        }else{
-            currentGap = currentFloorNum - 1;
-        }
-    }
+//    public void movinginGap(){
+//        if(isUp){
+//            currentGap = currentFloorNum;
+//        }else{
+//            currentGap = currentFloorNum - 1;
+//        }
+//    }
 
     public boolean moving(){
         currentState.moving();
@@ -78,7 +78,7 @@ public class ElevatorController implements DoorSensorListener, ElevatorPanelList
         currentState.printCurrentState();
     }
 
-    public void floorButtonPressed(int floorNum) {
+    public void floorButtonPressed(double floorNum) {
         if (floorNum > currentFloorNum) {
             upList.add(floorNum);
             Collections.sort(upList);
@@ -194,11 +194,11 @@ public class ElevatorController implements DoorSensorListener, ElevatorPanelList
         return currentState;
     }
 
-    public int getCurrentFloorNum() {
+    public double getCurrentFloorNum() {
         return currentFloorNum;
     }
 
-    public void setCurrentFloorNum(int currentFloorNum) {
+    public void setCurrentFloorNum(double currentFloorNum) {
         this.currentFloorNum = currentFloorNum;
     }
 
@@ -210,7 +210,7 @@ public class ElevatorController implements DoorSensorListener, ElevatorPanelList
         isReached = reached;
     }
 
-    public int CalcualateAimFloorNum() {
+    public double CalcualateAimFloorNum() {
         if(isUp && upList.size() != 0){
             aimFloorNum = upList.get(0);
         }else if(!isUp && downList.size() != 0){
@@ -223,19 +223,19 @@ public class ElevatorController implements DoorSensorListener, ElevatorPanelList
         this.aimFloorNum = aimFloorNum;
     }
 
-    public List<Integer> getUpList() {
+    public List<Double> getUpList() {
         return upList;
     }
 
-    public void setUpList(List<Integer> upList) {
+    public void setUpList(List<Double> upList) {
         this.upList = upList;
     }
 
-    public List<Integer> getDownList() {
+    public List<Double> getDownList() {
         return downList;
     }
 
-    public void setDownList(List<Integer> downList) {
+    public void setDownList(List<Double> downList) {
         this.downList = downList;
     }
 

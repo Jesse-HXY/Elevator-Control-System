@@ -18,23 +18,12 @@ public class MovingUp implements State {
     @Override
     public void moving() {
         elevatorController.setNotice("Moving up");
-        /*elevatorController.setNotice("Moving");
-        int tempFloorNum = elevatorController.getCurrentFloorNum();
-        int aimFloorNum = elevatorController.getUpList().get(0);
-        while(tempFloorNum != aimFloorNum){
-            tempFloorNum++;
-            elevatorController.setCurrentFloorNum(tempFloorNum);
-        }
-        elevatorController.getUpList().remove(0);
-        elevatorController.setCurrentState(elevatorController.getStop());
-        elevatorController.setNotice("arrived");*/
-        int tempFloorNum = elevatorController.getCurrentFloorNum() + 1;
+        double tempFloorNum = elevatorController.getCurrentFloorNum() + 0.5;
         elevatorController.setCurrentFloorNum(tempFloorNum);
-        int aimFloorNum = elevatorController.getUpList().get(0);
+        double aimFloorNum = elevatorController.getUpList().get(0);
         if(tempFloorNum == aimFloorNum){
             elevatorController.getUpList().remove(0);
             elevatorController.setCurrentState(elevatorController.getStop());
-            //elevatorController.setNotice("arrived");
         }
     }
 
